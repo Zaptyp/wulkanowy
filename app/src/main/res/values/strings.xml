@@ -163,6 +163,18 @@
     <string name="timetable_now">Now: %s</string>
     <string name="timetable_next">Next: %s</string>
     <string name="timetable_later">Later: %s</string>
+    <plurals name="timetable_notify_new_items_title">
+        <item quantity="one">Timetable change</item>
+        <item quantity="other">Timetable changes</item>
+    </plurals>
+    <plurals name="timetable_notify_new_items">
+        <item quantity="one">%1$d change in timetable</item>
+        <item quantity="other">%1$d changes in timetable</item>
+    </plurals>
+    <plurals name="timetable_number_item">
+        <item quantity="one">%d change</item>
+        <item quantity="other">%d changes</item>
+    </plurals>
 
 
     <!--Completed lessons-->
@@ -686,6 +698,7 @@
     <string name="channel_push">Push notifications</string>
     <string name="channel_upcoming_lessons">Upcoming lessons</string>
     <string name="channel_debug">Debug</string>
+    <string name="channel_change_timetable">Timetable change</string>
 
 
     <!--Colors-->

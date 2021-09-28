@@ -42,7 +42,7 @@ class TimetableRepository @Inject constructor(
 
     fun getTimetable(
         student: Student, semester: Semester, start: LocalDate, end: LocalDate,
-        forceRefresh: Boolean, refreshAdditional: Boolean = false
+        forceRefresh: Boolean, refreshAdditional: Boolean = false, notify: Boolean = false
     ) = networkBoundResource(
         mutex = saveFetchResultMutex,
         shouldFetch = { (timetable, additional, headers) ->
@@ -63,7 +63,7 @@ class TimetableRepository @Inject constructor(
             timetableFull.mapToEntities(semester)
         },
         saveFetchResult = { timetableOld, timetableNew ->
-            refreshTimetable(student, timetableOld.lessons, timetableNew.lessons)
+            refreshTimetable(student, timetableOld.lessons, timetableNew.lessons, notify)
             refreshAdditional(timetableOld.additional, timetableNew.additional)
             refreshDayHeaders(timetableOld.headers, timetableNew.headers)
 
@@ -111,17 +111,31 @@ class TimetableRepository @Inject constructor(
         }
     }
 
+    fun getTimetableFromDatabase(
+        semester: Semester,
+        from: LocalDate,
+        end: LocalDate
+    ): Flow<List<Timetable>> {
+        return timetableDb.loadAll(semester.diaryId, semester.studentId, from, end)
+    }
+
+    suspend fun updateTimetable(timetable: List<Timetable>) {
+        return timetableDb.updateAll(timetable)
+    }
+
     private suspend fun refreshTimetable(
         student: Student,
-        lessonsOld: List<Timetable>, lessonsNew: List<Timetable>
+        lessonsOld: List<Timetable>, lessonsNew: List<Timetable>,
+        notify: Boolean
     ) {
         val lessonsToRemove = lessonsOld uniqueSubtract lessonsNew
         val lessonsToAdd = (lessonsNew uniqueSubtract lessonsOld).map { new ->
             val matchingOld = lessonsOld.singleOrNull { new.start == it.start }
             if (matchingOld != null) {
+                new.apply { if (notify) isNotified = false } //todo
                 val useOldTeacher = new.teacher.isEmpty() && !new.changes && !matchingOld.changes
                 new.copy(
-                    room = if (new.room.isEmpty()) matchingOld.room else new.room,
+                    room = new.room.ifEmpty { matchingOld.room },
                     teacher = if (useOldTeacher) matchingOld.teacher
                     else new.teacher
                 )
