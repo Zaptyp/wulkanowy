@@ -46,6 +46,7 @@ class NotificationsCenterAdapter @Inject constructor() :
         NotificationType.NEW_NOTE -> R.drawable.ic_stat_note
         NotificationType.NEW_ANNOUNCEMENT -> R.drawable.ic_all_about
         NotificationType.PUSH -> R.drawable.ic_stat_all
+        NotificationType.CHANGE_TIMETABLE -> R.drawable.ic_main_timetable
     }
 
     class ViewHolder(val binding: ItemNotificationsCenterBinding) :

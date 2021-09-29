@@ -15,9 +15,17 @@ class ChangeTimetableNotification @Inject constructor(
 
     suspend fun notify(items: List<Timetable>, student: Student) {
         val today = LocalDate.now()
-        val lines = items.filter { !it.date.isBefore(today) }.map {
-            "${it.date.toFormattedString("dd.MM")} - ${it.number}. ${it.subject}: ${it.info}"
-        }.ifEmpty { return } //todo
+        val lines =
+            items.filter { !it.date.isBefore(today) && !(it.roomOld.isBlank() || it.subjectOld.isBlank() || it.teacherOld.isBlank()) }
+                .map {
+                    var text =
+                        "${it.date.toFormattedString("EEE dd.MM")} lekcja ${it.number}. - ${it.subject}\n"
+                    if (it.roomOld.isNotBlank()) text += "Zmiana sali z ${it.roomOld} na ${it.room}\n"
+                    if (it.teacherOld.isNotBlank()) text += "Zmiana nauczyciela z ${it.teacherOld} na ${it.teacher}\n"
+                    if (it.subjectOld.isNotBlank()) text += "Zmiana przedmiotu z ${it.subjectOld} na ${it.subject}\n"
+                    text += it.info
+                    text
+                }.ifEmpty { return }
 
         val notification = MultipleNotificationsData(
             type = NotificationType.CHANGE_TIMETABLE,
