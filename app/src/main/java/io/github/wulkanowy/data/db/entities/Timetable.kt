@@ -52,5 +52,5 @@ data class Timetable(
     var id: Long = 0
 
     @ColumnInfo(name = "is_notified")
-    var isNotified: Boolean = true //todo migration
+    var isNotified: Boolean = true
 }
