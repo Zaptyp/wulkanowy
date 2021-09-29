@@ -1,5 +1,7 @@
 package io.github.wulkanowy.services.sync.notifications
 
+import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.wulkanowy.R
 import io.github.wulkanowy.data.db.entities.Student
 import io.github.wulkanowy.data.db.entities.Timetable
@@ -10,7 +12,8 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 class ChangeTimetableNotification @Inject constructor(
-    private val appNotificationManager: AppNotificationManager
+    private val appNotificationManager: AppNotificationManager,
+    @ApplicationContext private val context: Context,
 ) {
 
     suspend fun notify(items: List<Timetable>, student: Student) {
@@ -18,11 +21,27 @@ class ChangeTimetableNotification @Inject constructor(
         val lines =
             items.filter { !it.date.isBefore(today) && !(it.roomOld.isBlank() || it.subjectOld.isBlank() || it.teacherOld.isBlank()) }
                 .map {
-                    var text =
-                        "${it.date.toFormattedString("EEE dd.MM")} lekcja ${it.number}. - ${it.subject}\n"
-                    if (it.roomOld.isNotBlank()) text += "Zmiana sali z ${it.roomOld} na ${it.room}\n"
-                    if (it.teacherOld.isNotBlank()) text += "Zmiana nauczyciela z ${it.teacherOld} na ${it.teacher}\n"
-                    if (it.subjectOld.isNotBlank()) text += "Zmiana przedmiotu z ${it.subjectOld} na ${it.subject}\n"
+                    var text = context.getString(
+                        R.string.timetable_notify_lesson,
+                        it.date.toFormattedString("EEE dd.MM"),
+                        it.number,
+                        it.subject
+                    )
+                    if (it.roomOld.isNotBlank()) text += context.getString(
+                        R.string.timetable_notify_change_room,
+                        it.roomOld,
+                        it.room
+                    )
+                    if (it.teacherOld.isNotBlank()) text += context.getString(
+                        R.string.timetable_notify_change_room,
+                        it.teacherOld,
+                        it.teacher
+                    )
+                    if (it.subjectOld.isNotBlank()) text += context.getString(
+                        R.string.timetable_notify_change_room,
+                        it.subjectOld,
+                        it.subject
+                    )
                     text += it.info
                     text
                 }.ifEmpty { return }

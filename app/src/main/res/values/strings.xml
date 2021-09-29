@@ -163,6 +163,10 @@
     <string name="timetable_now">Now: %s</string>
     <string name="timetable_next">Next: %s</string>
     <string name="timetable_later">Later: %s</string>
+    <string name="timetable_notify_lesson">%s lesson %d - %s\n</string>
+    <string name="timetable_notify_change_room">Change of room from %s to %s\n</string>
+    <string name="timetable_notify_change_teacher">Change of Teacher from %s to %s\n</string>
+    <string name="timetable_notify_change_subject">Change of Subject from %s to %s\n</string>
     <plurals name="timetable_notify_new_items_title">
         <item quantity="one">Timetable change</item>
         <item quantity="other">Timetable changes</item>

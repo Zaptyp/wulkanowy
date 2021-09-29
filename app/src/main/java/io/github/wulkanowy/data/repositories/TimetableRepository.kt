@@ -138,15 +138,7 @@ class TimetableRepository @Inject constructor(
     ) {
         val lessonsToRemove = lessonsOld uniqueSubtract lessonsNew
         val lessonsToAdd = (lessonsNew uniqueSubtract lessonsOld).map { new ->
-            val matchingOld = lessonsOld.singleOrNull { new.start == it.start }
-            if (matchingOld != null) {
-                val useOldTeacher = new.teacher.isEmpty() && !new.changes && !matchingOld.changes
-                new.copy(
-                    room = new.room.ifEmpty { matchingOld.room },
-                    teacher = if (useOldTeacher) matchingOld.teacher else new.teacher
-
-                ).apply { isNotified = false }
-            } else new.apply { isNotified = false }
+            new.apply { if (notify) isNotified = false }
         }
 
         timetableDb.deleteAll(lessonsToRemove)
