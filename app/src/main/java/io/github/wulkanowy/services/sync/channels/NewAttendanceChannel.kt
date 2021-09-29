@@ -11,20 +11,20 @@ import io.github.wulkanowy.R
 import javax.inject.Inject
 
 @TargetApi(26)
-class TimetableChangeChannel @Inject constructor(
+class NewAttendanceChannel @Inject constructor(
     private val notificationManager: NotificationManagerCompat,
     @ApplicationContext private val context: Context
 ) : Channel {
 
     companion object {
-        const val CHANNEL_ID = "change_timetable_channel"
+        const val CHANNEL_ID = "new_attendance_channel"
     }
 
     override fun create() {
         notificationManager.createNotificationChannel(
             NotificationChannel(
                 CHANNEL_ID,
-                context.getString(R.string.channel_change_timetable),
+                context.getString(R.string.channel_new_attendance),
                 NotificationManager.IMPORTANCE_HIGH
             )
                 .apply {
