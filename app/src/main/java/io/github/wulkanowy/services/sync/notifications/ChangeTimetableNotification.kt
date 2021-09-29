@@ -19,7 +19,7 @@ class ChangeTimetableNotification @Inject constructor(
     suspend fun notify(items: List<Timetable>, student: Student) {
         val today = LocalDate.now()
         val lines =
-            items.filter { !it.date.isBefore(today) && !(it.roomOld.isBlank() || it.subjectOld.isBlank() || it.teacherOld.isBlank()) }
+            items.filter { !it.date.isBefore(today) && (it.roomOld.isNotBlank() || it.subjectOld.isNotBlank() || it.teacherOld.isNotBlank()) }
                 .map {
                     var text = context.getString(
                         R.string.timetable_notify_lesson,
