@@ -1,6 +1,7 @@
 package io.github.wulkanowy.services.sync.notifications
 
 import io.github.wulkanowy.services.sync.channels.LuckyNumberChannel
+import io.github.wulkanowy.services.sync.channels.NewAttendanceChannel
 import io.github.wulkanowy.services.sync.channels.NewConferencesChannel
 import io.github.wulkanowy.services.sync.channels.NewExamChannel
 import io.github.wulkanowy.services.sync.channels.NewGradesChannel
@@ -23,5 +24,6 @@ enum class NotificationType(val group: String?, val channel: String) {
     NEW_NOTE("new_notes_group", NewNotesChannel.CHANNEL_ID),
     NEW_ANNOUNCEMENT("new_school_announcements_group", NewSchoolAnnouncementsChannel.CHANNEL_ID),
     CHANGE_TIMETABLE("change_timetable_group", TimetableChangeChannel.CHANNEL_ID),
+    NEW_ATTENDANCE("new_attendance_group", NewAttendanceChannel.CHANNEL_ID),
     PUSH(null, PushChannel.CHANNEL_ID)
 }

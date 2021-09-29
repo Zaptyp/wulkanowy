@@ -11,6 +11,7 @@ import io.github.wulkanowy.data.db.entities.Notification
 import io.github.wulkanowy.databinding.FragmentNotificationsCenterBinding
 import io.github.wulkanowy.services.sync.notifications.NotificationType
 import io.github.wulkanowy.ui.base.BaseFragment
+import io.github.wulkanowy.ui.modules.attendance.AttendanceFragment
 import io.github.wulkanowy.ui.modules.conference.ConferenceFragment
 import io.github.wulkanowy.ui.modules.exam.ExamFragment
 import io.github.wulkanowy.ui.modules.grade.GradeFragment
@@ -106,5 +107,6 @@ class NotificationsCenterFragment :
         NotificationType.NEW_ANNOUNCEMENT -> SchoolAnnouncementFragment.newInstance()
         NotificationType.PUSH -> null
         NotificationType.CHANGE_TIMETABLE -> TimetableFragment.newInstance()
+        NotificationType.NEW_ATTENDANCE -> AttendanceFragment.newInstance()
     }
 }
