@@ -10,7 +10,9 @@ import io.github.wulkanowy.R
 import io.github.wulkanowy.data.db.entities.TimetableAdditional
 import io.github.wulkanowy.databinding.FragmentTimetableAdditionalBinding
 import io.github.wulkanowy.ui.base.BaseFragment
+import io.github.wulkanowy.ui.modules.main.MainActivity
 import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.ui.modules.timetable.additional.add.AdditionalLessonAddDialog
 import io.github.wulkanowy.ui.widgets.DividerItemDecoration
 import io.github.wulkanowy.utils.SchoolDaysValidator
 import io.github.wulkanowy.utils.dpToPx
@@ -33,6 +35,9 @@ class AdditionalLessonsFragment :
     @Inject
     lateinit var additionalLessonsAdapter: AdditionalLessonsAdapter
 
+    override val additionalLessonAddSuccess: String
+        get() = getString(R.string.additional_lessons_add_success)
+
     companion object {
         private const val SAVED_DATE_KEY = "CURRENT_DATE"
 
@@ -53,7 +58,10 @@ class AdditionalLessonsFragment :
     override fun initView() {
         with(binding.additionalLessonsRecycler) {
             layoutManager = LinearLayoutManager(context)
-            adapter = additionalLessonsAdapter
+            adapter = additionalLessonsAdapter.apply {
+                onDeleteClickListener =
+                    { additional -> presenter.deleteAdditionalLesson(additional) }
+            }
             addItemDecoration(DividerItemDecoration(context))
         }
 
@@ -71,6 +79,8 @@ class AdditionalLessonsFragment :
             additionalLessonsPreviousButton.setOnClickListener { presenter.onPreviousDay() }
             additionalLessonsNavDate.setOnClickListener { presenter.onPickDate() }
             additionalLessonsNextButton.setOnClickListener { presenter.onNextDay() }
+
+            openAddAdditionalLessonButton.setOnClickListener { presenter.onAdditionalLessonAddButtonClicked() }
 
             additionalLessonsNavContainer.setElevationCompat(requireContext().dpToPx(8f))
         }
@@ -129,6 +139,10 @@ class AdditionalLessonsFragment :
 
     override fun showNextButton(show: Boolean) {
         binding.additionalLessonsNextButton.visibility = if (show) View.VISIBLE else View.INVISIBLE
+    }
+
+    override fun showAddAdditionalLessonDialog() {
+        (activity as? MainActivity)?.showDialogFragment(AdditionalLessonAddDialog())
     }
 
     override fun showDatePickerDialog(currentDate: LocalDate) {

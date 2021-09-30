@@ -6,6 +6,8 @@ import java.time.LocalDate
 
 interface AdditionalLessonsView : BaseView {
 
+    val additionalLessonAddSuccess: String
+
     val isViewEmpty: Boolean
 
     fun initView()
@@ -35,4 +37,6 @@ interface AdditionalLessonsView : BaseView {
     fun showNextButton(show: Boolean)
 
     fun showDatePickerDialog(currentDate: LocalDate)
+
+    fun showAddAdditionalLessonDialog()
 }

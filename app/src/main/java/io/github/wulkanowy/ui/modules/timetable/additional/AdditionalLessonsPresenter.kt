@@ -2,6 +2,7 @@ package io.github.wulkanowy.ui.modules.timetable.additional
 
 import android.annotation.SuppressLint
 import io.github.wulkanowy.data.Status
+import io.github.wulkanowy.data.db.entities.TimetableAdditional
 import io.github.wulkanowy.data.repositories.SemesterRepository
 import io.github.wulkanowy.data.repositories.StudentRepository
 import io.github.wulkanowy.data.repositories.TimetableRepository
@@ -10,6 +11,7 @@ import io.github.wulkanowy.ui.base.ErrorHandler
 import io.github.wulkanowy.utils.AnalyticsHelper
 import io.github.wulkanowy.utils.afterLoading
 import io.github.wulkanowy.utils.capitalise
+import io.github.wulkanowy.utils.flowWithResource
 import io.github.wulkanowy.utils.flowWithResourceIn
 import io.github.wulkanowy.utils.getLastSchoolDayIfHoliday
 import io.github.wulkanowy.utils.isHolidays
@@ -63,6 +65,10 @@ class AdditionalLessonsPresenter @Inject constructor(
         view?.showDatePickerDialog(currentDate)
     }
 
+    fun onAdditionalLessonAddButtonClicked() {
+        view?.showAddAdditionalLessonDialog()
+    }
+
     fun onDateSet(year: Int, month: Int, day: Int) {
         loadData(LocalDate.of(year, month, day))
         reloadView()
@@ -96,6 +102,24 @@ class AdditionalLessonsPresenter @Inject constructor(
             currentDate = baseDate
             reloadNavigation()
         }.launch("holidays")
+    }
+
+    fun deleteAdditionalLesson(timetableAdditional: TimetableAdditional) {
+        flowWithResource { timetableRepository.deleteAdditional(listOf(timetableAdditional)) }.onEach {
+            when (it.status) {
+                Status.LOADING -> Timber.i("Homework delete start")
+                Status.SUCCESS -> {
+                    Timber.i("Homework delete: Success")
+                    view?.run {
+                        showMessage(additionalLessonAddSuccess)
+                    }
+                }
+                Status.ERROR -> {
+                    Timber.i("Homework delete result: An exception occurred")
+                    errorHandler.dispatch(it.error!!)
+                }
+            }
+        }.launch("delete")
     }
 
     private fun loadData(date: LocalDate, forceRefresh: Boolean = false) {

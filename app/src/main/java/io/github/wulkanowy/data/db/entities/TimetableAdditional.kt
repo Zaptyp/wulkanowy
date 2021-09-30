@@ -27,4 +27,7 @@ data class TimetableAdditional(
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
+
+    @ColumnInfo(name = "is_added_by_user")
+    var isAddedByUser: Boolean = false
 }

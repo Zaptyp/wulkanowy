@@ -2,6 +2,8 @@ package io.github.wulkanowy.ui.modules.timetable.additional
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.wulkanowy.data.db.entities.TimetableAdditional
@@ -14,6 +16,8 @@ class AdditionalLessonsAdapter @Inject constructor() :
 
     var items = emptyList<TimetableAdditional>()
 
+    var onDeleteClickListener: (timetableAdditional: TimetableAdditional) -> Unit = {}
+
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ItemViewHolder(
@@ -25,8 +29,11 @@ class AdditionalLessonsAdapter @Inject constructor() :
         val item = items[position]
 
         with(holder.binding) {
-            additionalLessonItemTime.text = "${item.start.toFormattedString("HH:mm")} - ${item.end.toFormattedString("HH:mm")}"
+            additionalLessonItemTime.text =
+                "${item.start.toFormattedString("HH:mm")} - ${item.end.toFormattedString("HH:mm")}"
             additionalLessonItemSubject.text = item.subject
+            additionalLessonItemDelete.visibility = if (item.isAddedByUser) VISIBLE else GONE
+            additionalLessonItemDelete.setOnClickListener { onDeleteClickListener(item) }
         }
     }
 

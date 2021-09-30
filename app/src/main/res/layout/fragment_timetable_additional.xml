@@ -108,6 +108,18 @@
                     android:text="@string/all_retry" />
             </LinearLayout>
         </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/openAddAdditionalLessonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/additional_add_title"
+            android:tint="?colorOnSecondary"
+            app:icon="@drawable/ic_all_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <io.github.wulkanowy.ui.widgets.MaterialLinearLayout
