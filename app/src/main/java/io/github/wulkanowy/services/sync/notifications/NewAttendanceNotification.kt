@@ -5,6 +5,7 @@ import io.github.wulkanowy.data.db.entities.Attendance
 import io.github.wulkanowy.data.db.entities.Student
 import io.github.wulkanowy.data.pojos.MultipleNotificationsData
 import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.utils.description
 import io.github.wulkanowy.utils.toFormattedString
 import java.time.LocalDate
 import javax.inject.Inject
@@ -17,7 +18,7 @@ class NewAttendanceNotification @Inject constructor(
         val today = LocalDate.now()
         val lines = items.filter { !it.date.isBefore(today) }.map {
             if (it.presence) return
-            "${it.date.toFormattedString("dd.MM")} - ${it.subject}: ${it.name}"
+            "${it.date.toFormattedString("dd.MM")} - ${it.subject}: ${it.description}"
         }.ifEmpty { return }
 
         val notification = MultipleNotificationsData(
