@@ -41,6 +41,8 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalDate.now
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -60,19 +62,21 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
 
     companion object {
 
-        private const val EXTRA_TOGGLED_WIDGET_ID = "extraToggledWidget"
+        const val EXTRA_TOGGLED_WIDGET_ID = "extraToggledWidget"
 
-        private const val EXTRA_BUTTON_TYPE = "extraButtonType"
+        const val EXTRA_BUTTON_TYPE = "extraButtonType"
 
-        private const val BUTTON_NEXT = "buttonNext"
+        const val BUTTON_NEXT = "buttonNext"
 
         private const val BUTTON_PREV = "buttonPrev"
 
-        private const val BUTTON_RESET = "buttonReset"
+        const val BUTTON_RESET = "buttonReset"
 
         const val EXTRA_FROM_PROVIDER = "extraFromProvider"
 
         fun getDateWidgetKey(appWidgetId: Int) = "timetable_widget_date_$appWidgetId"
+
+        fun getLessonEndWidgetKey(appWidgetId: Int) = "timetable_widget_lesson_end_$appWidgetId"
 
         fun getStudentWidgetKey(appWidgetId: Int) = "timetable_widget_student_$appWidgetId"
 
@@ -98,7 +102,17 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
             intent.getIntArrayExtra(EXTRA_APPWIDGET_IDS)?.forEach { appWidgetId ->
                 val student =
                     getStudent(sharedPref.getLong(getStudentWidgetKey(appWidgetId), 0), appWidgetId)
-                updateWidget(context, appWidgetId, now().nextOrSameSchoolDay, student)
+                val endDate = LocalDateTime.ofEpochSecond(
+                    sharedPref.getLong(
+                        getLessonEndWidgetKey(
+                            appWidgetId
+                        ), 0
+                    ), 0, ZoneOffset.UTC
+                )
+                val date = if (endDate.toLocalDate() == now() && endDate > LocalDateTime.now())
+                    now().nextOrSameSchoolDay
+                else now().nextSchoolDay
+                updateWidget(context, appWidgetId, date, student)
             }
         } else {
             val buttonType = intent.getStringExtra(EXTRA_BUTTON_TYPE)
@@ -109,11 +123,26 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
             )
             val savedDate =
                 LocalDate.ofEpochDay(sharedPref.getLong(getDateWidgetKey(toggledWidgetId), 0))
+            val endDate = LocalDateTime.ofEpochSecond(
+                sharedPref.getLong(
+                    getLessonEndWidgetKey(
+                        toggledWidgetId
+                    ), 0
+                ), 0, ZoneOffset.UTC
+            )
             val date = when (buttonType) {
-                BUTTON_RESET -> now().nextOrSameSchoolDay
+                BUTTON_RESET -> {
+                    if (endDate.toLocalDate() == now() && endDate > LocalDateTime.now())
+                        now().nextOrSameSchoolDay
+                    else now().nextSchoolDay
+                }
                 BUTTON_NEXT -> savedDate.nextSchoolDay
                 BUTTON_PREV -> savedDate.previousSchoolDay
-                else -> now().nextOrSameSchoolDay
+                else -> {
+                    if (endDate.toLocalDate() == now() && endDate > LocalDateTime.now())
+                        now().nextOrSameSchoolDay
+                    else now().nextSchoolDay
+                }
             }
             if (!buttonType.isNullOrBlank()) analytics.logEvent(
                 "changed_timetable_widget_day",
