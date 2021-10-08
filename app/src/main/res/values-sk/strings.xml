@@ -17,6 +17,7 @@
     <string name="license_title">Licencie</string>
     <string name="message_title">Správy</string>
     <string name="send_message_title">Nová správa</string>
+    <string name="add_homework_title">New homework</string>
     <string name="note_title">Poznámky a úspechy</string>
     <string name="homework_title">Domáce úlohy</string>
     <string name="account_title">Manažér účtov</string>
@@ -53,7 +54,6 @@
     <string name="login_invalid_custom_email">Použite priradené prihlasovacie alebo e-mail v @%1$s</string>
     <string name="login_invalid_symbol">Neplatný symbol</string>
     <string name="login_incorrect_symbol">Žiak nebol nájdený. Skontrolujte správnosť symbolu a vybrané varianty denníka UONET+</string>
-    <string name="login_field_required">Toto pole je povinné</string>
     <string name="login_duplicate_student">Vybraný žiak už je prihlásený</string>
     <string name="login_symbol_helper">Symbol nájdete na stránke denníka v &#160;<b>Uczeń</b>→&#160;<b>Dostęp Mobilny</b> →&#160;<b>Zarejestruj urządzenie mobilne</b>.\n\nUistite sa, že ste na predchádzajúcu obrazovke nastaviť správny variant denníka do poľa <b>Variácie denníka UONET+</b>. Wulkanowy v túto chvíľu nezistí predškolské żaków</string>
     <string name="login_select_student">Vyberte žiakov, ktorí sa majú do aplikácie prihlásiť</string>
@@ -328,6 +328,9 @@
     <string name="homework_no_items">Žiadne informácie o domácich úlohách</string>
     <string name="homework_mark_as_done">Označiť ako hotové</string>
     <string name="homework_mark_as_undone">Nevyrobené</string>
+    <string name="homework_add">Add homework</string>
+    <string name="homework_add_success">Homework added successfully</string>
+    <string name="homework_delete_success">Homework deleted successfully</string>
     <string name="homework_attachments">Prílohy</string>
     <plurals name="homework_notify_new_item_title">
         <item quantity="one">Nový domáci úloh</item>
@@ -594,6 +597,10 @@
     <string name="all_no">Nie</string>
     <string name="all_save">Uložiť</string>
     <string name="all_title">Titul</string>
+    <string name="all_add">Add</string>
+    <string name="all_copied">Skopírované</string>
+    <string name="all_undo">Vrátiť</string>
+    <string name="all_change">Zmeniť</string>
     <!--Timetable Widget-->
     <string name="widget_timetable_no_items">Žiadne lekcie</string>
     <string name="widget_timetable_theme_title">Vybrať motív</string>
@@ -683,10 +690,6 @@
     <string name="all_green">Zelená</string>
     <string name="all_purple">Fialová</string>
     <string name="all_empty_color">Žiadna farba</string>
-    <!--Others-->
-    <string name="all_copied">Skopírované</string>
-    <string name="all_undo">Vrátiť</string>
-    <string name="all_change">Zmeniť</string>
     <!--Update helper-->
     <string name="update_download_started">Sťahovanie aktualizácií začalo…</string>
     <string name="update_download_success">Aktualizácia bola stiahnutá.</string>
@@ -703,4 +706,5 @@
     <string name="error_unknown">Vyskytla sa neočakávaná chyba</string>
     <string name="error_feature_disabled">Funkcia je deaktivovaná cez vašou školou</string>
     <string name="error_feature_not_available">Funkcia nie je k dispozícii. Prihláste sa v inom režime než Mobile API</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
