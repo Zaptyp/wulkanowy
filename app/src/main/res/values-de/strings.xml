@@ -17,6 +17,7 @@
     <string name="license_title">Lizenzen</string>
     <string name="message_title">Nachrichten</string>
     <string name="send_message_title">neue Nachricht</string>
+    <string name="add_homework_title">New homework</string>
     <string name="note_title">Eintragen und Erfolgen</string>
     <string name="homework_title">Hausaufgaben</string>
     <string name="account_title">Konten-Manager</string>
@@ -53,7 +54,6 @@
     <string name="login_invalid_custom_email">Benutze den zugewiesenen Login oder E-Mail in @%1$s</string>
     <string name="login_invalid_symbol">Ungültige symbol</string>
     <string name="login_incorrect_symbol">Schüler nicht gefunden. Überprüfen Sie das Symbol und die gewählte Variation des UONET+ Registers</string>
-    <string name="login_field_required">Dieses Datenfeld ist erforderlich</string>
     <string name="login_duplicate_student">Ausgewählter Student ist bereits angemeldet.</string>
     <string name="login_symbol_helper">Das Symbol kann auf der Registerseite in&#160;<b>Uczeń</b>→&#160;<b>Dostęp Mobilny</b> →&#160;<b>Zarejestruj urządzenie mobilne</b>gefunden werden.\n\nStellen Sie sicher, dass Sie die entsprechende Registervariante im Feld <b>UONET+ Registervariante</b> auf dem vorherigen Bildschirm festgelegt haben. Wulkanowy erkennt zur Zeit keine Vorschulstudenten</string>
     <string name="login_select_student">Wählen Sie die Studenten aus, die sich bei der Anwendung anmelden sollen.</string>
@@ -284,6 +284,9 @@
     <string name="homework_no_items">Keine Informationen über Hausaufgaben</string>
     <string name="homework_mark_as_done">Gemacht</string>
     <string name="homework_mark_as_undone">Unvollständig</string>
+    <string name="homework_add">Add homework</string>
+    <string name="homework_add_success">Homework added successfully</string>
+    <string name="homework_delete_success">Homework deleted successfully</string>
     <string name="homework_attachments">Anhänge</string>
     <plurals name="homework_notify_new_item_title">
         <item quantity="one">Neue hausaufgaben</item>
@@ -518,6 +521,10 @@
     <string name="all_no">Nein</string>
     <string name="all_save">Speichern</string>
     <string name="all_title">Titel</string>
+    <string name="all_add">Add</string>
+    <string name="all_copied">Kopiert</string>
+    <string name="all_undo">lösen</string>
+    <string name="all_change">Ändern</string>
     <!--Timetable Widget-->
     <string name="widget_timetable_no_items">Keine Lektionen</string>
     <string name="widget_timetable_theme_title">Thema wählen</string>
@@ -607,10 +614,6 @@
     <string name="all_green">Grün</string>
     <string name="all_purple">Violett</string>
     <string name="all_empty_color">Keine Farbe</string>
-    <!--Others-->
-    <string name="all_copied">Kopiert</string>
-    <string name="all_undo">lösen</string>
-    <string name="all_change">Ändern</string>
     <!--Update helper-->
     <string name="update_download_started">Download der Updates wurde gestartet…</string>
     <string name="update_download_success">Ein Update wurde gerade heruntergeladen.</string>
@@ -627,4 +630,5 @@
     <string name="error_unknown">Ein unerwarteter Fehler ist aufgetreten</string>
     <string name="error_feature_disabled">Funktion, die von Ihrer Schule deaktiviert wurde</string>
     <string name="error_feature_not_available">Feature in diesem Modus nicht verfügbar</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
