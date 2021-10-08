@@ -17,7 +17,7 @@
     <string name="license_title">Licencje</string>
     <string name="message_title">Wiadomości</string>
     <string name="send_message_title">Nowa wiadomość</string>
-    <string name="add_homework_title">New homework</string>
+    <string name="add_homework_title">Nowe zadanie domowe</string>
     <string name="note_title">Uwagi i osiągnięcia</string>
     <string name="homework_title">Zadania domowe</string>
     <string name="account_title">Menadżer kont</string>
@@ -328,9 +328,9 @@
     <string name="homework_no_items">Brak zadań domowych</string>
     <string name="homework_mark_as_done">Wykonane</string>
     <string name="homework_mark_as_undone">Niewykonane</string>
-    <string name="homework_add">Add homework</string>
-    <string name="homework_add_success">Homework added successfully</string>
-    <string name="homework_delete_success">Homework deleted successfully</string>
+    <string name="homework_add">Dodaj zadanie domowe</string>
+    <string name="homework_add_success">Zadanie domowe pomyślnie dodane</string>
+    <string name="homework_delete_success">Zadanie domowe pomyślnie usunięte</string>
     <string name="homework_attachments">Załączniki</string>
     <plurals name="homework_notify_new_item_title">
         <item quantity="one">Nowe zadanie domowe</item>
@@ -597,7 +597,7 @@
     <string name="all_no">Nie</string>
     <string name="all_save">Zapisz</string>
     <string name="all_title">Tytuł</string>
-    <string name="all_add">Add</string>
+    <string name="all_add">Dodaj</string>
     <string name="all_copied">Skopiowano</string>
     <string name="all_undo">Cofnij</string>
     <string name="all_change">Zmień</string>
@@ -706,5 +706,5 @@
     <string name="error_unknown">Wystąpił nieoczekiwany błąd</string>
     <string name="error_feature_disabled">Funkcja wyłączona przez szkołę</string>
     <string name="error_feature_not_available">Funkcja niedostępna. Zaloguj się w trybie innym niż Mobilne API</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_field_required">To pole jest wymagane</string>
 </resources>
