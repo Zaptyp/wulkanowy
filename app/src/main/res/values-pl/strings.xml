@@ -17,6 +17,7 @@
     <string name="license_title">Licencje</string>
     <string name="message_title">Wiadomości</string>
     <string name="send_message_title">Nowa wiadomość</string>
+    <string name="add_homework_title">New homework</string>
     <string name="note_title">Uwagi i osiągnięcia</string>
     <string name="homework_title">Zadania domowe</string>
     <string name="account_title">Menadżer kont</string>
@@ -53,7 +54,6 @@
     <string name="login_invalid_custom_email">Użyj przypisanego loginu lub adresu e-mail w @%1$s</string>
     <string name="login_invalid_symbol">Niepoprawny symbol</string>
     <string name="login_incorrect_symbol">Nie znaleziono ucznia. Sprawdź poprawność symbolu i wybranej odmiany dziennika UONET+</string>
-    <string name="login_field_required">To pole jest wymagane</string>
     <string name="login_duplicate_student">Wybrany uczeń jest już zalogowany</string>
     <string name="login_symbol_helper">Symbol znajdziesz na stronie dziennika w&#160;<b>Uczeń</b> →&#160;<b>Dostęp Mobilny</b> →&#160;<b>Zarejestruj urządzenie mobilne</b>.\n\nUpewnij się, że w polu <b>Dziennik UONET+</b> na poprzednim ekranie została ustawiona odpowiednia odmiana dziennika.\n\n<b>Wulkanowy na chwilę obecną nie wykrywa uczniów przedszkolnych (z zerówki)</b></string>
     <string name="login_select_student">Wybierz uczniów do zalogowania w aplikacji</string>
@@ -328,6 +328,9 @@
     <string name="homework_no_items">Brak zadań domowych</string>
     <string name="homework_mark_as_done">Wykonane</string>
     <string name="homework_mark_as_undone">Niewykonane</string>
+    <string name="homework_add">Add homework</string>
+    <string name="homework_add_success">Homework added successfully</string>
+    <string name="homework_delete_success">Homework deleted successfully</string>
     <string name="homework_attachments">Załączniki</string>
     <plurals name="homework_notify_new_item_title">
         <item quantity="one">Nowe zadanie domowe</item>
@@ -594,6 +597,10 @@
     <string name="all_no">Nie</string>
     <string name="all_save">Zapisz</string>
     <string name="all_title">Tytuł</string>
+    <string name="all_add">Add</string>
+    <string name="all_copied">Skopiowano</string>
+    <string name="all_undo">Cofnij</string>
+    <string name="all_change">Zmień</string>
     <!--Timetable Widget-->
     <string name="widget_timetable_no_items">Brak lekcji</string>
     <string name="widget_timetable_theme_title">Wybierz motyw</string>
@@ -683,10 +690,6 @@
     <string name="all_green">Zielony</string>
     <string name="all_purple">Fioletowy</string>
     <string name="all_empty_color">Brak koloru</string>
-    <!--Others-->
-    <string name="all_copied">Skopiowano</string>
-    <string name="all_undo">Cofnij</string>
-    <string name="all_change">Zmień</string>
     <!--Update helper-->
     <string name="update_download_started">Rozpoczęto pobieranie aktualizacji…</string>
     <string name="update_download_success">Aktualizacja została pobrana.</string>
@@ -703,4 +706,5 @@
     <string name="error_unknown">Wystąpił nieoczekiwany błąd</string>
     <string name="error_feature_disabled">Funkcja wyłączona przez szkołę</string>
     <string name="error_feature_not_available">Funkcja niedostępna. Zaloguj się w trybie innym niż Mobilne API</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
