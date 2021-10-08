@@ -17,6 +17,7 @@
     <string name="license_title">Лицензии</string>
     <string name="message_title">Сообщения</string>
     <string name="send_message_title">Новое сообщение</string>
+    <string name="add_homework_title">New homework</string>
     <string name="note_title">Предупреждения и свершения</string>
     <string name="homework_title">Домашние задания</string>
     <string name="account_title">Менеджер аккаунтов</string>
@@ -53,7 +54,6 @@
     <string name="login_invalid_custom_email">Использовать назначенный логин или email в @%1$s</string>
     <string name="login_invalid_symbol">Неправильный символ</string>
     <string name="login_incorrect_symbol">Студент не найден. Подтвердите символ и выбранный вариант регистра UONET+</string>
-    <string name="login_field_required">Это обязательное поле</string>
     <string name="login_duplicate_student">Данный ученик уже авторизован</string>
     <string name="login_symbol_helper">Этот символ можно найти на странице регистрации в &#160;<b>Ученик</b> → &#160;<b>Телефонный доступ</b> → &#160;<b> Зарегистрируйте мобильное устройство</b>.\n\nУбедитесь, что вы установили соответствующий вариант регистра в поле <b>Разновидностью бревна UONET+</b> на предыдущем экране. Вулкановый на данный момент не обнаруживает дошкольников</string>
     <string name="login_select_student">Выберите учеников для авторизации в приложении</string>
@@ -328,6 +328,9 @@
     <string name="homework_no_items">Нет домашних заданий</string>
     <string name="homework_mark_as_done">Отметить как выполненное</string>
     <string name="homework_mark_as_undone">Отметить как невыполненное</string>
+    <string name="homework_add">Add homework</string>
+    <string name="homework_add_success">Homework added successfully</string>
+    <string name="homework_delete_success">Homework deleted successfully</string>
     <string name="homework_attachments">Вложения</string>
     <plurals name="homework_notify_new_item_title">
         <item quantity="one">Новая домашняя работа</item>
@@ -594,6 +597,10 @@
     <string name="all_no">Нет</string>
     <string name="all_save">Сохранить</string>
     <string name="all_title">Тема</string>
+    <string name="all_add">Add</string>
+    <string name="all_copied">Скопировано</string>
+    <string name="all_undo">Отменить</string>
+    <string name="all_change">Изменить</string>
     <!--Timetable Widget-->
     <string name="widget_timetable_no_items">Нет уроков</string>
     <string name="widget_timetable_theme_title">Выбрать тему</string>
@@ -683,10 +690,6 @@
     <string name="all_green">Зелёный</string>
     <string name="all_purple">Фиолетовый</string>
     <string name="all_empty_color">Нет цвета</string>
-    <!--Others-->
-    <string name="all_copied">Скопировано</string>
-    <string name="all_undo">Отменить</string>
-    <string name="all_change">Изменить</string>
     <!--Update helper-->
     <string name="update_download_started">Загрузка обновлений началась…</string>
     <string name="update_download_success">Только что было скачано обновление.</string>
@@ -703,4 +706,5 @@
     <string name="error_unknown">Произошла неожиданная ошибка</string>
     <string name="error_feature_disabled">Функция была выключена школой</string>
     <string name="error_feature_not_available">Функция не доступна в этом режиме</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
