@@ -44,11 +44,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
-            android:name=".ui.modules.splash.SplashActivity"
+            android:name=".ui.modules.main.MainActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/WulkanowyTheme.SplashScreen"
-            tools:ignore="LockedOrientationActivity">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -60,12 +60,6 @@
             android:label="@string/login_title"
             android:theme="@style/WulkanowyTheme.Login"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.modules.main.MainActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/main_title"
-            android:theme="@style/WulkanowyTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.modules.message.send.SendMessageActivity"
             android:configChanges="orientation|screenSize"

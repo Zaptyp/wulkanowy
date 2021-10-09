@@ -15,10 +15,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.elevation.ElevationOverlayProvider
@@ -53,6 +55,7 @@ import io.github.wulkanowy.utils.getThemeAttrColor
 import io.github.wulkanowy.utils.nickOrName
 import io.github.wulkanowy.utils.safelyPopFragments
 import io.github.wulkanowy.utils.setOnViewChangeListener
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -123,6 +126,7 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(ActivityMainBinding.inflate(layoutInflater).apply { binding = this }.root)
         setSupportActionBar(binding.mainToolbar)
         messageContainer = binding.mainMessageContainer
@@ -131,11 +135,13 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
         val section = MainView.Section.values()
             .singleOrNull { it.id == intent.getIntExtra(EXTRA_START_MENU, -1) }
 
-        presenter.onAttachView(this, section)
-
-        with(navController) {
-            initialize(startMenuIndex, savedInstanceState)
-            pushFragment(moreMenuFragments[startMenuMoreIndex])
+        lifecycleScope.launch {
+            if (presenter.onAttachView(this@MainActivity, section)) {
+                with(navController) {
+                    initialize(startMenuIndex, savedInstanceState)
+                    pushFragment(moreMenuFragments[startMenuMoreIndex])
+                }
+            }
         }
 
         if (appInfo.systemVersion >= Build.VERSION_CODES.N_MR1) {
