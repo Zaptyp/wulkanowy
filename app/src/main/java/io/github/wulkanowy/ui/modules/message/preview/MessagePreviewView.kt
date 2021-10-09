@@ -41,4 +41,6 @@ interface MessagePreviewView : BaseView {
     fun shareText(text: String, subject: String)
 
     fun popView()
+
+    fun printDocument(html: String, jobName: String)
 }
