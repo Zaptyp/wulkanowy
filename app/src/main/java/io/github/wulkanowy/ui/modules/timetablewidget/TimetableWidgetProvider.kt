@@ -2,7 +2,6 @@ package io.github.wulkanowy.ui.modules.timetablewidget
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetManager.ACTION_APPWIDGET_DELETED
 import android.appwidget.AppWidgetManager.ACTION_APPWIDGET_UPDATE
@@ -15,6 +14,7 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.os.Build
 import android.widget.RemoteViews
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.wulkanowy.R
@@ -27,6 +27,7 @@ import io.github.wulkanowy.services.widgets.TimetableWidgetService
 import io.github.wulkanowy.ui.modules.main.MainActivity
 import io.github.wulkanowy.ui.modules.main.MainView
 import io.github.wulkanowy.utils.AnalyticsHelper
+import io.github.wulkanowy.utils.AppInfo
 import io.github.wulkanowy.utils.capitalise
 import io.github.wulkanowy.utils.createNameInitialsDrawable
 import io.github.wulkanowy.utils.getCompatColor
@@ -57,6 +58,9 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
 
     @Inject
     lateinit var analytics: AnalyticsHelper
+
+    @Inject
+    lateinit var appInfo: AppInfo
 
     companion object {
 
@@ -136,7 +140,7 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
         }
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale", "InlinedApi")
     private fun updateWidget(
         context: Context,
         appWidgetId: Int,
@@ -154,6 +158,11 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
             layoutId = R.layout.widget_timetable_dark
         }
 
+        val pendingIntentFlags = if (appInfo.versionCode >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
         val nextNavIntent = createNavIntent(context, appWidgetId, appWidgetId, BUTTON_NEXT)
         val prevNavIntent = createNavIntent(context, -appWidgetId, appWidgetId, BUTTON_PREV)
         val resetNavIntent =
@@ -170,13 +179,13 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
                 addFlags(FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK)
                 putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
                 putExtra(EXTRA_FROM_PROVIDER, true)
-            }, FLAG_UPDATE_CURRENT
+            }, pendingIntentFlags
         )
         val appIntent = PendingIntent.getActivity(
             context,
             MainView.Section.TIMETABLE.id,
             MainActivity.getStartIntent(context, MainView.Section.TIMETABLE, true),
-            FLAG_UPDATE_CURRENT
+            pendingIntentFlags
         )
 
         val remoteView = RemoteViews(context.packageName, layoutId).apply {
@@ -215,19 +224,26 @@ class TimetableWidgetProvider : HiltBroadcastReceiver() {
         }
     }
 
+    @SuppressLint("InlinedApi")
     private fun createNavIntent(
         context: Context,
         code: Int,
         appWidgetId: Int,
         buttonType: String
     ): PendingIntent {
+        val pendingIntentFlags = if (appInfo.versionCode >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
+
         return PendingIntent.getBroadcast(
             context, code,
             Intent(context, TimetableWidgetProvider::class.java).apply {
                 action = ACTION_APPWIDGET_UPDATE
                 putExtra(EXTRA_BUTTON_TYPE, buttonType)
                 putExtra(EXTRA_TOGGLED_WIDGET_ID, appWidgetId)
-            }, FLAG_UPDATE_CURRENT
+            }, pendingIntentFlags
         )
     }
 

@@ -6,11 +6,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.viewpager.widget.ViewPager
 
-class SwipeDisabledViewPager : ViewPager {
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attr: AttributeSet) : super(context, attr)
+class SwipeDisabledViewPager @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null
+) : ViewPager(context, attrs) {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent) = false

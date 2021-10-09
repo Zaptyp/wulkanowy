@@ -1,7 +1,7 @@
 package io.github.wulkanowy.services.alarm
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -17,6 +17,7 @@ import io.github.wulkanowy.services.HiltBroadcastReceiver
 import io.github.wulkanowy.services.sync.channels.UpcomingLessonsChannel.Companion.CHANNEL_ID
 import io.github.wulkanowy.ui.modules.main.MainActivity
 import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.utils.AppInfo
 import io.github.wulkanowy.utils.flowWithResource
 import io.github.wulkanowy.utils.getCompatColor
 import io.github.wulkanowy.utils.toLocalDateTime
@@ -35,6 +36,9 @@ class TimetableNotificationReceiver : HiltBroadcastReceiver() {
 
     @Inject
     lateinit var preferencesRepository: PreferencesRepository
+
+    @Inject
+    lateinit var appInfo: AppInfo
 
     companion object {
         const val NOTIFICATION_TYPE_CURRENT = 1
@@ -107,6 +111,7 @@ class TimetableNotificationReceiver : HiltBroadcastReceiver() {
         )
     }
 
+    @SuppressLint("InlinedApi")
     private fun showNotification(
         context: Context,
         notificationId: Int,
@@ -117,6 +122,12 @@ class TimetableNotificationReceiver : HiltBroadcastReceiver() {
         title: String,
         next: String?
     ) {
+        val pendingIntentFlags = if (appInfo.versionCode >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
+
         NotificationManagerCompat.from(context)
             .notify(notificationId, NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
@@ -139,7 +150,7 @@ class TimetableNotificationReceiver : HiltBroadcastReceiver() {
                         context,
                         MainView.Section.TIMETABLE.id,
                         MainActivity.getStartIntent(context, MainView.Section.TIMETABLE, true),
-                        FLAG_UPDATE_CURRENT
+                        pendingIntentFlags
                     )
                 )
                 .build()

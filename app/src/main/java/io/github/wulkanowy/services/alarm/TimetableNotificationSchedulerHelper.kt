@@ -1,11 +1,12 @@
 package io.github.wulkanowy.services.alarm
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.AlarmManager.RTC_WAKEUP
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationManagerCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,6 +27,7 @@ import io.github.wulkanowy.services.alarm.TimetableNotificationReceiver.Companio
 import io.github.wulkanowy.services.alarm.TimetableNotificationReceiver.Companion.STUDENT_ID
 import io.github.wulkanowy.services.alarm.TimetableNotificationReceiver.Companion.STUDENT_NAME
 import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.utils.AppInfo
 import io.github.wulkanowy.utils.DispatchersProvider
 import io.github.wulkanowy.utils.nickOrName
 import io.github.wulkanowy.utils.toTimestamp
@@ -41,6 +43,7 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
     private val alarmManager: AlarmManager,
     private val preferencesRepository: PreferencesRepository,
     private val dispatchersProvider: DispatchersProvider,
+    private val appInfo: AppInfo
 ) {
 
     private fun getRequestCode(time: LocalDateTime, studentId: Int) =
@@ -54,6 +57,7 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
 
     suspend fun cancelScheduled(lessons: List<Timetable>, student: Student) {
         val studentId = student.studentId
+
         withContext(dispatchersProvider.backgroundThread) {
             lessons.sortedBy { it.start }.forEachIndexed { index, lesson ->
                 val upcomingTime = getUpcomingLessonTime(index, lessons, lesson)
@@ -71,10 +75,18 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
         }
     }
 
+    @SuppressLint("InlinedApi")
     private fun cancelScheduledTo(range: ClosedRange<LocalDateTime>, requestCode: Int) {
         if (now() in range) cancelNotification()
+
+        val pendingIntentFlags = if (appInfo.versionCode >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
+
         alarmManager.cancel(
-            PendingIntent.getBroadcast(context, requestCode, Intent(), FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, requestCode, Intent(), pendingIntentFlags)
         )
     }
 
@@ -133,8 +145,8 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
         }
     }
 
-    private fun createIntent(student: Student, lesson: Timetable, nextLesson: Timetable?): Intent {
-        return Intent(context, TimetableNotificationReceiver::class.java).apply {
+    private fun createIntent(student: Student, lesson: Timetable, nextLesson: Timetable?) =
+        Intent(context, TimetableNotificationReceiver::class.java).apply {
             putExtra(STUDENT_ID, student.studentId)
             putExtra(STUDENT_NAME, student.nickOrName)
             putExtra(LESSON_ROOM, lesson.room)
@@ -144,8 +156,8 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
             putExtra(LESSON_NEXT_TITLE, nextLesson?.subject)
             putExtra(LESSON_NEXT_ROOM, nextLesson?.room)
         }
-    }
 
+    @SuppressLint("InlinedApi")
     private fun scheduleBroadcast(
         intent: Intent,
         studentId: Int,
@@ -153,17 +165,32 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
         time: LocalDateTime
     ) {
         try {
-            AlarmManagerCompat.setExactAndAllowWhileIdle(
-                alarmManager, RTC_WAKEUP, time.toTimestamp(),
-                PendingIntent.getBroadcast(context, getRequestCode(time, studentId), intent.also {
-                    it.putExtra(NOTIFICATION_ID, MainView.Section.TIMETABLE.id)
-                    it.putExtra(LESSON_TYPE, notificationType)
-                }, FLAG_UPDATE_CURRENT)
+            val pendingIntentFlags = if (appInfo.versionCode >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
+            val updatedIntent = intent.apply {
+                putExtra(NOTIFICATION_ID, MainView.Section.TIMETABLE.id)
+                putExtra(LESSON_TYPE, notificationType)
+            }
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                getRequestCode(time, studentId),
+                updatedIntent,
+                pendingIntentFlags
             )
+
+            AlarmManagerCompat.setExactAndAllowWhileIdle(
+                alarmManager,
+                RTC_WAKEUP,
+                time.toTimestamp(),
+                pendingIntent
+            )
+
             Timber.d(
-                "TimetableNotification scheduled: type: $notificationType, subject: ${
-                    intent.getStringExtra(LESSON_TITLE)
-                }, start: $time, student: $studentId"
+                "TimetableNotification scheduled: type: $notificationType, " +
+                    "subject: ${intent.getStringExtra(LESSON_TITLE)}, start: $time, student: $studentId"
             )
         } catch (e: IllegalStateException) {
             Timber.e(e)

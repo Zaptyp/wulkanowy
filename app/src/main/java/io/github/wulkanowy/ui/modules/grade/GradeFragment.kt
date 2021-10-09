@@ -81,7 +81,7 @@ class GradeFragment : BaseFragment<FragmentGradeBinding>(R.layout.fragment_grade
 
         with(binding.gradeTabLayout) {
             setupWithViewPager(binding.gradeViewPager)
-            setElevationCompat(context.dpToPx(4f))
+            elevation = context.dpToPx(4f)
         }
 
         with(binding) {

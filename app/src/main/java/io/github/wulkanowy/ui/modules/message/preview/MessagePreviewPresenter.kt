@@ -1,7 +1,6 @@
 package io.github.wulkanowy.ui.modules.message.preview
 
 import android.annotation.SuppressLint
-import android.os.Build
 import io.github.wulkanowy.data.Status
 import io.github.wulkanowy.data.db.entities.Message
 import io.github.wulkanowy.data.db.entities.MessageAttachment
@@ -135,7 +134,6 @@ class MessagePreviewPresenter @Inject constructor(
 
     @SuppressLint("NewApi")
     fun onPrint(): Boolean {
-        if (appInfo.systemVersion < Build.VERSION_CODES.LOLLIPOP) return false
         message?.let {
             val dateString = it.date.toFormattedString("yyyy-MM-dd HH:mm:ss")
             val infoContent = "<div><h4>Data wysłania</h4>$dateString</div>" + when {

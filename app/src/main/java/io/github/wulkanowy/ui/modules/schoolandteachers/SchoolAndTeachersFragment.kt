@@ -57,7 +57,7 @@ class SchoolAndTeachersFragment :
 
         with(binding.schoolandteachersTabLayout) {
             setupWithViewPager(binding.schoolandteachersViewPager)
-            setElevationCompat(context.dpToPx(4f))
+            elevation = context.dpToPx(4f)
         }
     }
 
