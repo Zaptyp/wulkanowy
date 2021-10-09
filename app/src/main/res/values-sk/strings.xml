@@ -661,6 +661,7 @@
     <string name="pref_attendance_appearance_view">Dochádzka</string>
     <string name="pref_timetable_appearance_view">Plán lekcie</string>
     <string name="pref_grades_advanced_header">Známky</string>
+    <string name="pref_counted_average_advanced_header">Vypočítaný priemer</string>
     <string name="pref_messages_advanced_header">Správy</string>
     <string name="pref_appearance_category">Vzhľad a správanie</string>
     <string name="pref_appearance_category_summary">Jazyky, motívy, triedenie predmetov</string>
