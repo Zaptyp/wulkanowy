@@ -33,7 +33,7 @@ abstract class AbstractMigrationTest {
         ).addMigrations(
             *AppDatabase.getMigrations(
                 SharedPrefProvider(PreferenceManager.getDefaultSharedPreferences(context)),
-                AppInfo(context)
+                AppInfo()
             )
         ).build()
         // close the database and release any stream resources when the test finishes
