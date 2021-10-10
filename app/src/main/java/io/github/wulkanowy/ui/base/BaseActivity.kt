@@ -1,8 +1,6 @@
 package io.github.wulkanowy.ui.base
 
 import android.app.ActivityManager
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -83,8 +81,8 @@ abstract class BaseActivity<T : BasePresenter<out BaseView>, VB : ViewBinding> :
     }
 
     override fun openClearLoginView() {
-        startActivity(LoginActivity.getStartIntent(this)
-            .apply { addFlags(FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK) })
+        startActivity(LoginActivity.getStartIntent(this))
+        finishAffinity()
     }
 
     override fun onDestroy() {

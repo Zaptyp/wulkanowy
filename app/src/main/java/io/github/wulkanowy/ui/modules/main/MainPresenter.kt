@@ -27,14 +27,9 @@ class MainPresenter @Inject constructor(
 
     private var studentsWitSemesters: List<StudentWithSemesters>? = null
 
-    suspend fun onAttachView(view: MainView, initMenu: MainView.Section?): Boolean {
+    fun onAttachView(view: MainView, initMenu: MainView.Section?): Boolean {
         super.onAttachView(view)
-        if (!studentRepository.isCurrentStudentSet()) {
-            view.openClearLoginView()
-            return false
-        }
-
-        view.apply {
+        with(view) {
             getProperViewIndexes(initMenu).let { (main, more) ->
                 startMenuIndex = main
                 startMenuMoreIndex = more

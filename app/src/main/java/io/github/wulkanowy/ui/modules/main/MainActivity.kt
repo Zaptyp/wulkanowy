@@ -15,12 +15,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.elevation.ElevationOverlayProvider
@@ -55,7 +53,6 @@ import io.github.wulkanowy.utils.getThemeAttrColor
 import io.github.wulkanowy.utils.nickOrName
 import io.github.wulkanowy.utils.safelyPopFragments
 import io.github.wulkanowy.utils.setOnViewChangeListener
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -85,19 +82,6 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
     private val navController =
         FragNavController(supportFragmentManager, R.id.main_fragment_container)
 
-    companion object {
-        const val EXTRA_START_MENU = "extraStartMenu"
-
-        fun getStartIntent(
-            context: Context,
-            startMenu: MainView.Section? = null,
-            clear: Boolean = false
-        ) = Intent(context, MainActivity::class.java).apply {
-            if (clear) flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
-            startMenu?.let { putExtra(EXTRA_START_MENU, it.id) }
-        }
-    }
-
     override val isRootView get() = navController.isRootFragment
 
     override val currentStackSize get() = navController.currentStack?.size
@@ -123,10 +107,23 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
         MainView.Section.LUCKY_NUMBER.id to LuckyNumberFragment.newInstance(),
     )
 
+    companion object {
+
+        const val EXTRA_START_MENU = "extraStartMenu"
+
+        fun getStartIntent(
+            context: Context,
+            startMenu: MainView.Section? = null,
+            startNewTask: Boolean = false
+        ) = Intent(context, MainActivity::class.java).apply {
+            if (startNewTask) flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+            startMenu?.let { putExtra(EXTRA_START_MENU, it.id) }
+        }
+    }
+
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         setContentView(ActivityMainBinding.inflate(layoutInflater).apply { binding = this }.root)
         setSupportActionBar(binding.mainToolbar)
         messageContainer = binding.mainMessageContainer
@@ -135,13 +132,11 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
         val section = MainView.Section.values()
             .singleOrNull { it.id == intent.getIntExtra(EXTRA_START_MENU, -1) }
 
-        lifecycleScope.launch {
-            if (presenter.onAttachView(this@MainActivity, section)) {
-                with(navController) {
-                    initialize(startMenuIndex, savedInstanceState)
-                    pushFragment(moreMenuFragments[startMenuMoreIndex])
-                }
-            }
+        presenter.onAttachView(this@MainActivity, section)
+
+        with(navController) {
+            initialize(startMenuIndex, savedInstanceState)
+            pushFragment(moreMenuFragments[startMenuMoreIndex])
         }
 
         if (appInfo.systemVersion >= Build.VERSION_CODES.N_MR1) {
