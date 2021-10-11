@@ -70,9 +70,6 @@ class ErrorDialog : BaseDialogFragment<DialogErrorBinding>() {
 
         with(binding) {
             errorDialogContent.text = stringWriter.toString()
-            with(errorDialogHorizontalScroll) {
-                post { fullScroll(HorizontalScrollView.FOCUS_LEFT) }
-            }
             errorDialogCopy.setOnClickListener {
                 val clip = ClipData.newPlainText("wulkanowy", stringWriter.toString())
                 activity?.getSystemService<ClipboardManager>()?.setPrimaryClip(clip)
