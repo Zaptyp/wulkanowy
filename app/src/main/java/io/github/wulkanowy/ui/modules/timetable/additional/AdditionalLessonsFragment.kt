@@ -35,9 +35,6 @@ class AdditionalLessonsFragment :
     @Inject
     lateinit var additionalLessonsAdapter: AdditionalLessonsAdapter
 
-    override val additionalLessonAddSuccess: String
-        get() = getString(R.string.additional_lessons_add_success)
-
     companion object {
         private const val SAVED_DATE_KEY = "CURRENT_DATE"
 
@@ -98,6 +95,10 @@ class AdditionalLessonsFragment :
             items = emptyList()
             notifyDataSetChanged()
         }
+    }
+
+    override fun showSuccessMessage() {
+        getString(R.string.additional_lessons_delete_success)
     }
 
     override fun updateNavigationDay(date: String) {

@@ -107,15 +107,15 @@ class AdditionalLessonsPresenter @Inject constructor(
     fun deleteAdditionalLesson(timetableAdditional: TimetableAdditional) {
         flowWithResource { timetableRepository.deleteAdditional(timetableAdditional) }.onEach {
             when (it.status) {
-                Status.LOADING -> Timber.i("Homework delete start")
+                Status.LOADING -> Timber.i("Additional Lesson delete start")
                 Status.SUCCESS -> {
-                    Timber.i("Homework delete: Success")
+                    Timber.i("Additional Lesson delete: Success")
                     view?.run {
-                        showMessage(additionalLessonAddSuccess)
+                        showSuccessMessage()
                     }
                 }
                 Status.ERROR -> {
-                    Timber.i("Homework delete result: An exception occurred")
+                    Timber.i("Additional Lesson delete result: An exception occurred")
                     errorHandler.dispatch(it.error!!)
                 }
             }

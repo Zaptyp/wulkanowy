@@ -37,4 +37,6 @@ interface AdditionalLessonsView : BaseView {
     fun showDatePickerDialog(currentDate: LocalDate)
 
     fun showAddAdditionalLessonDialog()
+
+    fun showSuccessMessage()
 }
