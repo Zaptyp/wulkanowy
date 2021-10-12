@@ -97,6 +97,7 @@ import io.github.wulkanowy.data.db.migrations.Migration37
 import io.github.wulkanowy.data.db.migrations.Migration38
 import io.github.wulkanowy.data.db.migrations.Migration39
 import io.github.wulkanowy.data.db.migrations.Migration4
+import io.github.wulkanowy.data.db.migrations.Migration41
 import io.github.wulkanowy.data.db.migrations.Migration40
 import io.github.wulkanowy.data.db.migrations.Migration42
 import io.github.wulkanowy.data.db.migrations.Migration5
@@ -189,6 +190,7 @@ abstract class AppDatabase : RoomDatabase() {
             Migration38(),
             Migration39(),
             Migration40(),
+            Migration41(),
             Migration42()
         )
 
