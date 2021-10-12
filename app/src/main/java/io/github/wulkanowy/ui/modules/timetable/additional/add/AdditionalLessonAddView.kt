@@ -5,11 +5,7 @@ import java.time.LocalDate
 
 interface AdditionalLessonAddView : BaseView {
 
-    val additionalLessonAddSuccess: String
-
     fun initView()
-
-    fun checkFields()
 
     fun closeDialog()
 
@@ -18,4 +14,14 @@ interface AdditionalLessonAddView : BaseView {
     fun showStartTimePickerDialog()
 
     fun showEndTimePickerDialog()
+
+    fun showSuccessMessage()
+
+    fun setErrorDateRequired()
+
+    fun setErrorStartRequired()
+
+    fun setErrorEndRequired()
+
+    fun setErrorContentRequired()
 }

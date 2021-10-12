@@ -17,7 +17,6 @@ import io.github.wulkanowy.R
 import io.github.wulkanowy.databinding.DialogAdditionalAddBinding
 import io.github.wulkanowy.ui.base.BaseDialogFragment
 import io.github.wulkanowy.utils.toFormattedString
-import io.github.wulkanowy.utils.toLocalDate
 import io.github.wulkanowy.utils.toLocalDateTime
 import io.github.wulkanowy.utils.toTimestamp
 import java.time.LocalDate
@@ -34,9 +33,6 @@ class AdditionalLessonAddDialog : BaseDialogFragment<DialogAdditionalAddBinding>
     private var date: LocalDate? = null
     private var start: LocalTime? = null
     private var end: LocalTime? = null
-
-    override val additionalLessonAddSuccess: String
-        get() = getString(R.string.additional_lessons_add_success)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +59,14 @@ class AdditionalLessonAddDialog : BaseDialogFragment<DialogAdditionalAddBinding>
         }
 
         with(binding) {
-            additionalLessonDialogAdd.setOnClickListener { presenter.onAddAdditionalLessonClicked() }
+            additionalLessonDialogAdd.setOnClickListener {
+                presenter.onAddAdditionalClicked(
+                    start = additionalLessonDialogStart.editText?.text?.toString(),
+                    end = additionalLessonDialogEnd.editText?.text?.toString(),
+                    date = additionalLessonDialogDate.editText?.text?.toString(),
+                    content = additionalLessonDialogContent.editText?.text?.toString()
+                )
+            }
             additionalLessonDialogClose.setOnClickListener { dismiss() }
             additionalLessonDialogDate.editText?.setOnClickListener { presenter.showDatePicker(date) }
             additionalLessonDialogStart.editText?.setOnClickListener { presenter.showStartTimePicker() }
@@ -89,56 +92,35 @@ class AdditionalLessonAddDialog : BaseDialogFragment<DialogAdditionalAddBinding>
         }
     }
 
-    override fun checkFields() {
-        with(binding) {
-            var start: LocalTime? = null
-            var end: LocalTime? = null
-            var date: LocalDate? = null
-            var content: String? = null
+    override fun showSuccessMessage() {
+        showMessage(getString(R.string.additional_lessons_add_success))
+    }
 
-            with(additionalLessonDialogDate) {
-                if (editText?.text.isNullOrBlank()) {
-                    isErrorEnabled = true
-                    error = getString(R.string.all_no_data)
-                } else {
-                    date = editText?.text.toString().toLocalDate()
-                    isErrorEnabled = false
-                }
-            }
-            with(additionalLessonDialogStart) {
-                if (editText?.text.isNullOrBlank()) {
-                    isErrorEnabled = true
-                    error = getString(R.string.all_no_data)
-                } else {
-                    val hour = editText?.text.toString().split(":")[0].toInt()
-                    val minute = editText?.text.toString().split(":")[1].toInt()
-                    start = LocalTime.of(hour, minute)
-                    isErrorEnabled = false
-                }
-            }
-            with(additionalLessonDialogEnd) {
-                if (editText?.text.isNullOrBlank()) {
-                    isErrorEnabled = true
-                    error = getString(R.string.all_no_data)
-                } else {
-                    val hour = editText?.text.toString().split(":")[0].toInt()
-                    val minute = editText?.text.toString().split(":")[1].toInt()
-                    end = LocalTime.of(hour, minute)
-                    isErrorEnabled = false
-                }
-            }
-            with(additionalLessonDialogContent) {
-                if (editText?.text.isNullOrBlank()) {
-                    isErrorEnabled = true
-                    error = getString(R.string.all_no_data)
-                } else {
-                    content = editText?.text.toString()
-                    isErrorEnabled = false
-                }
-            }
-            if (start != null && end != null && date != null && content != null) {
-                presenter.addAdditionalLesson(start!!, end!!, date!!, content!!)
-            }
+    override fun setErrorDateRequired() {
+        with(binding.additionalLessonDialogDate) {
+            isErrorEnabled = true
+            error = getString(R.string.error_field_required)
+        }
+    }
+
+    override fun setErrorStartRequired() {
+        with(binding.additionalLessonDialogStart) {
+            isErrorEnabled = true
+            error = getString(R.string.error_field_required)
+        }
+    }
+
+    override fun setErrorEndRequired() {
+        with(binding.additionalLessonDialogEnd) {
+            isErrorEnabled = true
+            error = getString(R.string.error_field_required)
+        }
+    }
+
+    override fun setErrorContentRequired() {
+        with(binding.additionalLessonDialogContent) {
+            isErrorEnabled = true
+            error = getString(R.string.error_field_required)
         }
     }
 

@@ -8,6 +8,7 @@ import io.github.wulkanowy.data.repositories.TimetableRepository
 import io.github.wulkanowy.ui.base.BasePresenter
 import io.github.wulkanowy.ui.base.ErrorHandler
 import io.github.wulkanowy.utils.flowWithResource
+import io.github.wulkanowy.utils.toLocalDate
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import java.time.LocalDate
@@ -30,10 +31,6 @@ class AdditionalLessonAddPresenter @Inject constructor(
         Timber.i("AdditionalLesson details view was initialized")
     }
 
-    fun onAddAdditionalLessonClicked() {
-        view?.checkFields()
-    }
-
     fun showDatePicker(date: LocalDate?) {
         view?.showDatePickerDialog(date ?: LocalDate.now())
     }
@@ -46,7 +43,40 @@ class AdditionalLessonAddPresenter @Inject constructor(
         view?.showEndTimePickerDialog()
     }
 
-    fun addAdditionalLesson(
+    fun onAddAdditionalClicked(start: String?, end: String?, date: String?, content: String?) {
+        var isError = false
+
+        if (start.isNullOrBlank()) {
+            view?.setErrorStartRequired()
+            isError = true
+        }
+
+        if (end.isNullOrBlank()) {
+            view?.setErrorEndRequired()
+            isError = true
+        }
+
+        if (date.isNullOrBlank()) {
+            view?.setErrorDateRequired()
+            isError = true
+        }
+
+        if (content.isNullOrBlank()) {
+            view?.setErrorContentRequired()
+            isError = true
+        }
+
+        if (!isError) {
+            addAdditionalLesson(
+                LocalTime.parse(start!!),
+                LocalTime.parse(end),
+                date!!.toLocalDate(),
+                content!!
+            )
+        }
+    }
+
+    private fun addAdditionalLesson(
         start: LocalTime,
         end: LocalTime,
         date: LocalDate,
@@ -56,16 +86,14 @@ class AdditionalLessonAddPresenter @Inject constructor(
             val student = studentRepository.getCurrentStudent()
             val semester = semesterRepository.getCurrentSemester(student)
             timetableRepository.insertAdditional(
-                listOf(
-                    TimetableAdditional(
-                        semester.semesterId,
-                        student.studentId,
-                        LocalDateTime.of(date, start),
-                        LocalDateTime.of(date, end),
-                        date,
-                        subject
-                    ).apply { isAddedByUser = true }
-                )
+                TimetableAdditional(
+                    studentId = semester.semesterId,
+                    diaryId = student.studentId,
+                    start = LocalDateTime.of(date, start),
+                    end = LocalDateTime.of(date, end),
+                    date = date,
+                    subject = subject
+                ).apply { isAddedByUser = true }
             )
         }.onEach {
             when (it.status) {
@@ -73,7 +101,7 @@ class AdditionalLessonAddPresenter @Inject constructor(
                 Status.SUCCESS -> {
                     Timber.i("AdditionalLesson insert: Success")
                     view?.run {
-                        showMessage(additionalLessonAddSuccess)
+                        showSuccessMessage()
                         closeDialog()
                     }
                 }

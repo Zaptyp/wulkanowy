@@ -136,7 +136,8 @@ class TimetableRepository @Inject constructor(
         old: List<TimetableAdditional>,
         new: List<TimetableAdditional>
     ) {
-        timetableAdditionalDb.deleteAll(old.filter { !it.isAddedByUser } uniqueSubtract new)
+        val oldFiltered = old.filter { !it.isAddedByUser }
+        timetableAdditionalDb.deleteAll(oldFiltered uniqueSubtract new)
         timetableAdditionalDb.insertAll(new uniqueSubtract old)
     }
 
@@ -145,9 +146,9 @@ class TimetableRepository @Inject constructor(
         timetableHeaderDb.insertAll(new uniqueSubtract old)
     }
 
-    suspend fun insertAdditional(additional: List<TimetableAdditional>) =
-        timetableAdditionalDb.insertAll(additional)
+    suspend fun insertAdditional(additional: TimetableAdditional) =
+        timetableAdditionalDb.insertAll(listOf(additional))
 
-    suspend fun deleteAdditional(additional: List<TimetableAdditional>) =
-        timetableAdditionalDb.deleteAll(additional)
+    suspend fun deleteAdditional(additional: TimetableAdditional) =
+        timetableAdditionalDb.deleteAll(listOf(additional))
 }

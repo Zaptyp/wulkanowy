@@ -6,8 +6,6 @@ import java.time.LocalDate
 
 interface AdditionalLessonsView : BaseView {
 
-    val additionalLessonAddSuccess: String
-
     val isViewEmpty: Boolean
 
     fun initView()

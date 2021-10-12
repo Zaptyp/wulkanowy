@@ -105,7 +105,7 @@ class AdditionalLessonsPresenter @Inject constructor(
     }
 
     fun deleteAdditionalLesson(timetableAdditional: TimetableAdditional) {
-        flowWithResource { timetableRepository.deleteAdditional(listOf(timetableAdditional)) }.onEach {
+        flowWithResource { timetableRepository.deleteAdditional(timetableAdditional) }.onEach {
             when (it.status) {
                 Status.LOADING -> Timber.i("Homework delete start")
                 Status.SUCCESS -> {
