@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 41,
-    "identityHash": "fed43d255b3ad973777b7062daca8e68",
+    "identityHash": "d9ce44a78495a358606612bd91603c0f",
     "entities": [
       {
         "tableName": "Students",
@@ -360,7 +360,7 @@
       },
       {
         "tableName": "Timetable",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`student_id` INTEGER NOT NULL, `diary_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `start` INTEGER NOT NULL, `end` INTEGER NOT NULL, `date` INTEGER NOT NULL, `subject` TEXT NOT NULL, `subjectOld` TEXT NOT NULL, `group` TEXT NOT NULL, `room` TEXT NOT NULL, `roomOld` TEXT NOT NULL, `teacher` TEXT NOT NULL, `teacherOld` TEXT NOT NULL, `info` TEXT NOT NULL, `student_plan` INTEGER NOT NULL, `changes` INTEGER NOT NULL, `canceled` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `is_notified` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`student_id` INTEGER NOT NULL, `diary_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `start` INTEGER NOT NULL, `end` INTEGER NOT NULL, `date` INTEGER NOT NULL, `subject` TEXT NOT NULL, `subjectOld` TEXT NOT NULL, `group` TEXT NOT NULL, `room` TEXT NOT NULL, `roomOld` TEXT NOT NULL, `teacher` TEXT NOT NULL, `teacherOld` TEXT NOT NULL, `info` TEXT NOT NULL, `student_plan` INTEGER NOT NULL, `changes` INTEGER NOT NULL, `canceled` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "studentId",
@@ -469,12 +469,6 @@
             "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "isNotified",
-            "columnName": "is_notified",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -488,7 +482,7 @@
       },
       {
         "tableName": "Attendance",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`student_id` INTEGER NOT NULL, `diary_id` INTEGER NOT NULL, `time_id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `number` INTEGER NOT NULL, `subject` TEXT NOT NULL, `name` TEXT NOT NULL, `presence` INTEGER NOT NULL, `absence` INTEGER NOT NULL, `exemption` INTEGER NOT NULL, `lateness` INTEGER NOT NULL, `excused` INTEGER NOT NULL, `deleted` INTEGER NOT NULL, `excusable` INTEGER NOT NULL, `excuse_status` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `is_notified` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`student_id` INTEGER NOT NULL, `diary_id` INTEGER NOT NULL, `time_id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `number` INTEGER NOT NULL, `subject` TEXT NOT NULL, `name` TEXT NOT NULL, `presence` INTEGER NOT NULL, `absence` INTEGER NOT NULL, `exemption` INTEGER NOT NULL, `lateness` INTEGER NOT NULL, `excused` INTEGER NOT NULL, `deleted` INTEGER NOT NULL, `excusable` INTEGER NOT NULL, `excuse_status` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "studentId",
@@ -583,12 +577,6 @@
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "isNotified",
-            "columnName": "is_notified",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -1318,7 +1306,7 @@
       },
       {
         "tableName": "Homework",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`semester_id` INTEGER NOT NULL, `student_id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `entry_date` INTEGER NOT NULL, `subject` TEXT NOT NULL, `content` TEXT NOT NULL, `teacher` TEXT NOT NULL, `teacher_symbol` TEXT NOT NULL, `attachments` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `is_done` INTEGER NOT NULL, `is_notified` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`semester_id` INTEGER NOT NULL, `student_id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `entry_date` INTEGER NOT NULL, `subject` TEXT NOT NULL, `content` TEXT NOT NULL, `teacher` TEXT NOT NULL, `teacher_symbol` TEXT NOT NULL, `attachments` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `is_done` INTEGER NOT NULL, `is_notified` INTEGER NOT NULL, `is_added_by_user` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "semesterId",
@@ -1389,6 +1377,12 @@
           {
             "fieldPath": "isNotified",
             "columnName": "is_notified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAddedByUser",
+            "columnName": "is_added_by_user",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -2322,7 +2316,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fed43d255b3ad973777b7062daca8e68')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9ce44a78495a358606612bd91603c0f')"
     ]
   }
 }
