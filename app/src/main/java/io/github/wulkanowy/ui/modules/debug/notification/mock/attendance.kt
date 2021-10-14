@@ -5,15 +5,15 @@ import java.time.LocalDate
 
 val debugAttendanceItems = listOf(
     generateAttendance("Matematyka", "PRESENCE"),
-    generateAttendance("Język angielski", "LATENESS"),
-    generateAttendance("Geografia", "ABSENCE"),
-    generateAttendance("Sieci komputerowe", "ABSENCE"),
-    generateAttendance("Systemy operacyjne", "LATENESS"),
-    generateAttendance("Język niemiecki", "ABSENCE"),
-    generateAttendance("Biologia", "ABSENCE"),
-    generateAttendance("Chemia", "ABSENCE"),
-    generateAttendance("Fizyka", "ABSENCE"),
-    generateAttendance("Matematyka", "ABSENCE"),
+    generateAttendance("Język angielski", "UNEXCUSED_LATENESS"),
+    generateAttendance("Geografia", "ABSENCE_UNEXCUSED"),
+    generateAttendance("Sieci komputerowe", "ABSENCE_EXCUSED"),
+    generateAttendance("Systemy operacyjne", "EXCUSED_LATENESS"),
+    generateAttendance("Język niemiecki", "ABSENCE_UNEXCUSED"),
+    generateAttendance("Biologia", "ABSENCE_UNEXCUSED"),
+    generateAttendance("Chemia", "ABSENCE_EXCUSED"),
+    generateAttendance("Fizyka", "ABSENCE_UNEXCUSED"),
+    generateAttendance("Matematyka", "ABSENCE_EXCUSED"),
 )
 
 private fun generateAttendance(subject: String, name: String) = Attendance(

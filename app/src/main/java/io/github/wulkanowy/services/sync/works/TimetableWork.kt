@@ -20,8 +20,10 @@ class TimetableWork @Inject constructor(
         timetableRepository.getTimetable(student, semester, now().monday, now().sunday, true)
             .waitForResult()
 
-        timetableRepository.getTimetableFromDatabase(semester, now().monday, now().sunday).first()
-            .filter { !it.isNotified }.let {
+        timetableRepository.getTimetableFromDatabase(semester, now().monday, now().sunday)
+            .first()
+            .filterNot { it.isNotified }
+            .let {
                 if (it.isNotEmpty()) changeTimetableNotification.notify(it, student)
 
                 timetableRepository.updateTimetable(it.onEach { timetable ->

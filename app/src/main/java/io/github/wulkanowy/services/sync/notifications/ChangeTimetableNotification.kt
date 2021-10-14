@@ -18,33 +18,41 @@ class ChangeTimetableNotification @Inject constructor(
 
     suspend fun notify(items: List<Timetable>, student: Student) {
         val today = LocalDate.now()
-        val lines =
-            items.filter { !it.date.isBefore(today) && (it.roomOld.isNotBlank() || it.subjectOld.isNotBlank() || it.teacherOld.isNotBlank()) }
-                .map {
-                    var text = context.getString(
-                        R.string.timetable_notify_lesson,
-                        it.date.toFormattedString("EEE dd.MM"),
-                        it.number,
-                        it.subject
-                    )
-                    if (it.roomOld.isNotBlank()) text += context.getString(
-                        R.string.timetable_notify_change_room,
-                        it.roomOld,
-                        it.room
-                    )
-                    if (it.teacherOld.isNotBlank()) text += context.getString(
-                        R.string.timetable_notify_change_room,
-                        it.teacherOld,
-                        it.teacher
-                    )
-                    if (it.subjectOld.isNotBlank()) text += context.getString(
-                        R.string.timetable_notify_change_room,
-                        it.subjectOld,
-                        it.subject
-                    )
-                    text += it.info
-                    text
-                }.ifEmpty { return }
+        val lines = items.filter {
+            !it.date.isBefore(today) && (it.roomOld.isNotBlank() || it.subjectOld.isNotBlank() || it.teacherOld.isNotBlank())
+        }.map {
+            var text = context.getString(
+                R.string.timetable_notify_lesson,
+                it.date.toFormattedString("EEE dd.MM"),
+                it.number,
+                it.subject
+            )
+
+            if (it.roomOld.isNotBlank()) {
+                text += context.getString(
+                    R.string.timetable_notify_change_room,
+                    it.roomOld,
+                    it.room
+                )
+            }
+            if (it.teacherOld.isNotBlank()) {
+                text += context.getString(
+                    R.string.timetable_notify_change_room,
+                    it.teacherOld,
+                    it.teacher
+                )
+            }
+            if (it.subjectOld.isNotBlank()) {
+                text += context.getString(
+                    R.string.timetable_notify_change_room,
+                    it.subjectOld,
+                    it.subject
+                )
+            }
+
+            text += it.info
+            text
+        }.ifEmpty { return }
 
         val notification = MultipleNotificationsData(
             type = NotificationType.CHANGE_TIMETABLE,

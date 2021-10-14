@@ -20,8 +20,10 @@ class AttendanceWork @Inject constructor(
         attendanceRepository.getAttendance(student, semester, now().monday, now().sunday, true)
             .waitForResult()
 
-        attendanceRepository.getAttendanceFromDatabase(semester, now().monday, now().sunday).first()
-            .filter { !it.isNotified }.let {
+        attendanceRepository.getAttendanceFromDatabase(semester, now().monday, now().sunday)
+            .first()
+            .filterNot { it.isNotified }
+            .let {
                 if (it.isNotEmpty()) newAttendanceNotification.notify(it, student)
 
                 attendanceRepository.updateTimetable(it.onEach { attendance ->
