@@ -32,8 +32,8 @@
     <string name="login_header_default">Zaloguj się za pomocą konta ucznia lub rodzica</string>
     <string name="login_header_symbol">Podaj symbol ze strony dziennika</string>
     <string name="login_nickname_hint">Nazwa użytkownika</string>
-    <string name="login_email_hint">Email</string>
-    <string name="login_login_pesel_email_hint">Login, PESEL lub e-mail</string>
+    <string name="login_email_hint">Adres e-mail</string>
+    <string name="login_login_pesel_email_hint">Login, PESEL lub adres e-mail</string>
     <string name="login_password_hint">Hasło</string>
     <string name="login_host_hint">Odmiana dziennika UONET+</string>
     <string name="login_type_api">Mobilne API</string>
@@ -49,10 +49,10 @@
     <string name="login_invalid_pin">Nieprawidłowy PIN</string>
     <string name="login_invalid_token">Nieprawidłowy token</string>
     <string name="login_expired_token">Token stracił ważność</string>
-    <string name="login_invalid_email">Niepoprawny adres email</string>
-    <string name="login_invalid_login">Użyj przydzielonego loginu zamiast emaila</string>
-    <string name="login_invalid_custom_email">Użyj przypisanego loginu lub adresu e-mail w @%1$s</string>
-    <string name="login_invalid_symbol">Niepoprawny symbol</string>
+    <string name="login_invalid_email">Nieprawidłowy adres e-mail</string>
+    <string name="login_invalid_login">Użyj loginu zamiast adresu e-mail</string>
+    <string name="login_invalid_custom_email">Użyj loginu lub adresu e-mail w @%1$s</string>
+    <string name="login_invalid_symbol">Nieprawidłowy symbol</string>
     <string name="login_incorrect_symbol">Nie znaleziono ucznia. Sprawdź poprawność symbolu i wybranej odmiany dziennika UONET+</string>
     <string name="login_duplicate_student">Wybrany uczeń jest już zalogowany</string>
     <string name="login_symbol_helper">Symbol znajdziesz na stronie dziennika w&#160;<b>Uczeń</b> →&#160;<b>Dostęp Mobilny</b> →&#160;<b>Zarejestruj urządzenie mobilne</b>.\n\nUpewnij się, że w polu <b>Dziennik UONET+</b> na poprzednim ekranie została ustawiona odpowiednia odmiana dziennika.\n\n<b>Wulkanowy na chwilę obecną nie wykrywa uczniów przedszkolnych (z zerówki)</b></string>
@@ -63,9 +63,9 @@
     <string name="login_advanced_warning_hybrid">Połączenie najlepszych cech dwóch pozostałych trybów. Działa szybciej niż scraper i zapewnia funkcje niedostępne w trybie Mobilne API. Jest w fazie eksperymentalnej</string>
     <string name="login_privacy_policy">Polityka prywatności</string>
     <string name="login_contact_header">Problemy z logowaniem? Napisz do nas!</string>
-    <string name="login_contact_email">Email</string>
+    <string name="login_contact_email">E-mail</string>
     <string name="login_contact_discord">Discord</string>
-    <string name="login_email_intent_title">Wyślij email</string>
+    <string name="login_email_intent_title">Wyślij wiadomość e-mail</string>
     <string name="login_recover_warning">Upewnij się, że została wybrana odpowiednia odmiana dziennika UONET+!</string>
     <string name="login_recover_button">Nie pamiętam hasła</string>
     <string name="login_recover_title">Przywróć swoje konto</string>
@@ -480,7 +480,7 @@
     <string name="student_info_parents_name">Imiona matki i ojca</string>
     <string name="student_info_phone">Telefon</string>
     <string name="student_info_cellphone">Telefon komórkowy</string>
-    <string name="student_info_email">E-mail</string>
+    <string name="student_info_email">Adres e-mail</string>
     <string name="student_info_address">Adres zamieszkania</string>
     <string name="student_info_registered_address">Adres zameldowania</string>
     <string name="student_info_correspondence_address">Adres korespondencyjny</string>
