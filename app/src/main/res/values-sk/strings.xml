@@ -453,10 +453,10 @@
     <string name="about_faq_summary">Prečítajte si často kladené otázky</string>
     <string name="about_discord">Server Discord</string>
     <string name="about_discord_summary">Pripojte sa ku komunite Wulkanového</string>
-    <string name="about_facebook">Facebooková fanpage</string>
+    <string name="about_facebook">Facebooková stránka</string>
     <string name="about_twitter">Twitter stránka</string>
     <string name="about_twitter_summary">Sledujte nás na Twitteri</string>
-    <string name="about_facebook_summary">Rovnako ako naše facebooková fanpage</string>
+    <string name="about_facebook_summary">Dajte like našej facebookovej stránke</string>
     <string name="about_privacy">Zásady ochrany osobných údajov</string>
     <string name="about_privacy_summary">Pravidlá pre zhromažďovanie osobných údajov</string>
     <string name="about_system">Systémové nastavenia</string>
