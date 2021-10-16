@@ -135,6 +135,7 @@ class TimetableNotificationReceiver : HiltBroadcastReceiver() {
                 .setAutoCancel(false)
                 .setWhen(countDown)
                 .setOngoing(isPersistent)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .apply {
                     if (Build.VERSION.SDK_INT >= N) setUsesChronometer(true)
                 }
