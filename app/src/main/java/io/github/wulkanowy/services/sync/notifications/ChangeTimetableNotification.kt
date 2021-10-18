@@ -35,22 +35,22 @@ class ChangeTimetableNotification @Inject constructor(
                     it.room
                 )
             }
-            if (it.teacherOld.isNotBlank()) {
+            if (it.teacherOld.isNotBlank() && it.teacher != it.teacherOld) {
                 text += context.getString(
-                    R.string.timetable_notify_change_room,
+                    R.string.timetable_notify_change_teacher,
                     it.teacherOld,
                     it.teacher
                 )
             }
             if (it.subjectOld.isNotBlank()) {
                 text += context.getString(
-                    R.string.timetable_notify_change_room,
+                    R.string.timetable_notify_change_subject,
                     it.subjectOld,
                     it.subject
                 )
             }
 
-            text += it.info
+            text += if (it.info.isNotBlank()) "\n${it.info}" else ""
             text
         }.ifEmpty { return }
 
