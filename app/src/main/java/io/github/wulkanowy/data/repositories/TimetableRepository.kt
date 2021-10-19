@@ -146,7 +146,7 @@ class TimetableRepository @Inject constructor(
         timetableHeaderDb.insertAll(new uniqueSubtract old)
     }
 
-    suspend fun insertAdditional(additional: TimetableAdditional) =
+    suspend fun saveAdditional(additional: TimetableAdditional) =
         timetableAdditionalDb.insertAll(listOf(additional))
 
     suspend fun deleteAdditional(additional: TimetableAdditional) =

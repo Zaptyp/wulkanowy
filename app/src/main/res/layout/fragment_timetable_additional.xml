@@ -26,6 +26,8 @@
                 android:id="@+id/additionalLessonsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="64dp"
                 tools:listitem="@layout/item_timetable_additional" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -143,8 +145,8 @@
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
             android:scaleType="fitStart"
-            android:tint="?colorPrimary"
-            app:srcCompat="@drawable/ic_chevron_left" />
+            app:srcCompat="@drawable/ic_chevron_left"
+            app:tint="?colorPrimary" />
 
         <TextView
             android:id="@+id/additionalLessonsNavDate"
@@ -168,7 +170,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
             android:scaleType="fitEnd"
-            android:tint="?colorPrimary"
-            app:srcCompat="@drawable/ic_chevron_right" />
+            app:srcCompat="@drawable/ic_chevron_right"
+            app:tint="?colorPrimary" />
     </io.github.wulkanowy.ui.widgets.MaterialLinearLayout>
 </FrameLayout>

@@ -15,6 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="?android:textColorPrimary"
@@ -47,7 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_menu_message_delete"
-        app:tint="@color/grade_red"
+        app:tint="?colorPrimary"
         tools:ignore="ContentDescription" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

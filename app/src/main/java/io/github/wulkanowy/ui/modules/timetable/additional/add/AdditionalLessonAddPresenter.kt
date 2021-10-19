@@ -23,8 +23,6 @@ class AdditionalLessonAddPresenter @Inject constructor(
     private val semesterRepository: SemesterRepository
 ) : BasePresenter<AdditionalLessonAddView>(errorHandler, studentRepository) {
 
-    var isAdditionalLessonFullscreen: Boolean = false
-
     override fun onAttachView(view: AdditionalLessonAddView) {
         super.onAttachView(view)
         view.initView()
@@ -85,10 +83,11 @@ class AdditionalLessonAddPresenter @Inject constructor(
         flowWithResource {
             val student = studentRepository.getCurrentStudent()
             val semester = semesterRepository.getCurrentSemester(student)
-            timetableRepository.insertAdditional(
+
+            timetableRepository.saveAdditional(
                 TimetableAdditional(
-                    studentId = semester.semesterId,
-                    diaryId = student.studentId,
+                    studentId = student.studentId,
+                    diaryId = semester.diaryId,
                     start = LocalDateTime.of(date, start),
                     end = LocalDateTime.of(date, end),
                     date = date,

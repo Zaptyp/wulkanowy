@@ -2,9 +2,8 @@ package io.github.wulkanowy.ui.modules.timetable.additional
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import io.github.wulkanowy.data.db.entities.TimetableAdditional
 import io.github.wulkanowy.databinding.ItemTimetableAdditionalBinding
@@ -32,7 +31,8 @@ class AdditionalLessonsAdapter @Inject constructor() :
             additionalLessonItemTime.text =
                 "${item.start.toFormattedString("HH:mm")} - ${item.end.toFormattedString("HH:mm")}"
             additionalLessonItemSubject.text = item.subject
-            additionalLessonItemDelete.visibility = if (item.isAddedByUser) VISIBLE else GONE
+
+            additionalLessonItemDelete.isVisible = item.isAddedByUser
             additionalLessonItemDelete.setOnClickListener { onDeleteClickListener(item) }
         }
     }
