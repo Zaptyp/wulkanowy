@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:minWidth="300dp"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp">
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/addadditionalLessonHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:text="@string/additional_lessons_add"
@@ -30,7 +30,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="28dp"
             android:hint="@string/all_date"
             app:startIconDrawable="@drawable/ic_main_timetable">
@@ -50,14 +50,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/all_start"
             app:startIconDrawable="@drawable/ic_main_timetable">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/additionalLessonDialogStartEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:editable="false"
                 android:focusable="false"
@@ -70,14 +70,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/all_end"
             app:startIconDrawable="@drawable/ic_main_timetable">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/additionalLessonDialogEndEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:editable="false"
                 android:focusable="false"
@@ -90,15 +90,16 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:hint="@string/all_subject">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/additionalLessonDialogContentEdit"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="4" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -113,11 +114,9 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
                 android:layout_marginBottom="8dp"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
@@ -133,11 +132,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"

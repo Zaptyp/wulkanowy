@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -52,6 +53,23 @@ class AdditionalLessonAddDialog : BaseDialogFragment<DialogAdditionalAddBinding>
     @SuppressLint("SetTextI18n")
     override fun initView() {
         with(binding) {
+            additionalLessonDialogStartEdit.doOnTextChanged { _, _, _, _ ->
+                additionalLessonDialogStart.isErrorEnabled = false
+                additionalLessonDialogStart.error = null
+            }
+            additionalLessonDialogEndEdit.doOnTextChanged { _, _, _, _ ->
+                additionalLessonDialogEnd.isErrorEnabled = false
+                additionalLessonDialogEnd.error = null
+            }
+            additionalLessonDialogDateEdit.doOnTextChanged { _, _, _, _ ->
+                additionalLessonDialogDate.isErrorEnabled = false
+                additionalLessonDialogDate.error = null
+            }
+            additionalLessonDialogContentEdit.doOnTextChanged { _, _, _, _ ->
+                additionalLessonDialogContent.isErrorEnabled = false
+                additionalLessonDialogContent.error = null
+            }
+
             additionalLessonDialogAdd.setOnClickListener {
                 presenter.onAddAdditionalClicked(
                     start = additionalLessonDialogStartEdit.text?.toString(),
