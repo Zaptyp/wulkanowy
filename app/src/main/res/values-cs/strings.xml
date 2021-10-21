@@ -655,7 +655,7 @@
     <string name="pref_ads_support_category_name">Podpora</string>
     <string name="pref_ads_support">Podívejte se na jednu reklamu pro podporu projektu</string>
     <string name="pref_ads_privacy_title">Souhlas se zpracováním dat</string>
-    <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
+    <string name="pref_ads_privacy_description">Jestli chcete sledovat reklamu, musíte souhlasit s podmínkami zpracování údajů v našich Zásadách Ochrany Osobních Údajů</string>
     <string name="pref_ads_privacy_agree">Souhlasím</string>
     <string name="pref_ads_privacy_link">Ochrana osobních údajů</string>
     <string name="pref_ads_loading">Reklama se načítá</string>
