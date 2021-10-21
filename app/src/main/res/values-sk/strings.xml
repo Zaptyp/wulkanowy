@@ -61,7 +61,7 @@
     <string name="login_advanced_warning_mobile_api">V tomto režime nefungujú nasledovné: šťastné číslo, štatistiky triedy, zhrnutie dochádzky, ospravedlnenie neprítomnosti, dokončené lekcie, informácie o škole a prezeranie zoznamu registrovaných zariadení</string>
     <string name="login_advanced_warning_scraper">Tento režim zobrazuje rovnaké dáta, ktoré sa zobrazujú na webových stránkach denníka</string>
     <string name="login_advanced_warning_hybrid">Kombinácia najlepších vlastností ostatných dvoch režimov. Funguje rýchlejšie ako scraper a poskytuje funkcie, ktoré nie sú k dispozícii v režime Mobilne API. Je to v experimentálnej fáze</string>
-    <string name="login_privacy_policy">Zásady ochrany osobných údajov</string>
+    <string name="login_privacy_policy">Ochrana osobných údajov</string>
     <string name="login_contact_header">Problémy s prihlásením? Napíšte nám!</string>
     <string name="login_contact_email">Email</string>
     <string name="login_contact_discord">Discord</string>
@@ -457,7 +457,7 @@
     <string name="about_twitter">Twitter stránka</string>
     <string name="about_twitter_summary">Sledujte nás na Twitteri</string>
     <string name="about_facebook_summary">Dajte like našej stránke na Facebooku</string>
-    <string name="about_privacy">Zásady ochrany osobných údajov</string>
+    <string name="about_privacy">Ochrana osobných údajov</string>
     <string name="about_privacy_summary">Pravidlá pre zhromažďovanie osobných údajov</string>
     <string name="about_system">Systémové nastavenia</string>
     <string name="about_system_summary">Otvoriť systémové nastavenia</string>
@@ -652,18 +652,18 @@
     <string name="pref_other_grade_modifier_minus">Hodnota mínusu</string>
     <string name="pref_other_fill_message_content">Odpovedať s históriou správ</string>
     <string name="pref_other_optional_arithmetic_average">Vypočítať aritmetický priemer, ak žiadna známka nemá váhu</string>
-    <string name="pref_ads_support_category_name">Support</string>
-    <string name="pref_ads_support">Watch single ad to support project</string>
-    <string name="pref_ads_privacy_title">Consent to data processing</string>
-    <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
-    <string name="pref_ads_privacy_agree">Agree</string>
-    <string name="pref_ads_privacy_link">Privacy policy</string>
-    <string name="pref_ads_loading">Ad is loading</string>
+    <string name="pref_ads_support_category_name">Podpora</string>
+    <string name="pref_ads_support">Pozrite sa na jednu reklamu pre podporu projektu</string>
+    <string name="pref_ads_privacy_title">Súhlas so spracovaním dát</string>
+    <string name="pref_ads_privacy_description">Ak chcete sledovať reklamu, musíte súhlasiť s podmienkami spracovania údajov v našich Zásadách Ochrany Osobných Údajov</string>
+    <string name="pref_ads_privacy_agree">Súhlasím</string>
+    <string name="pref_ads_privacy_link">Ochrana osobných údajov</string>
+    <string name="pref_ads_loading">Reklama sa načítava</string>
     <string name="pref_settings_advanced_title">Pokročilé</string>
     <string name="pref_settings_appearance_title">Vzhľad a správanie</string>
     <string name="pref_settings_notifications_title">Upozornenia</string>
     <string name="pref_settings_sync_title">Synchronizácia</string>
-    <string name="pref_settings_ads_title">Advertisements</string>
+    <string name="pref_settings_ads_title">Reklamy</string>
     <string name="pref_grades_appearance_header">Známky</string>
     <string name="pref_dashboard_appearance_header">Domov</string>
     <string name="pref_dashboard_appearance_tiles_title">Viditeľnosť dlaždíc</string>
@@ -681,7 +681,7 @@
     <string name="pref_advanced_category_summary">Hodnota plusu a mínusu, výpočet priemeru</string>
     <string name="pref_advanced_category">Pokročilé</string>
     <string name="pref_about_category_summary">Verzia aplikácie, prispievatelia, sociálne portály, licencie</string>
-    <string name="pref_ads_category_summary">Displaying advertisements, project support</string>
+    <string name="pref_ads_category_summary">Zobrazovanie reklám, podpora projektu</string>
     <!--Notification Channels-->
     <string name="channel_new_grades">Nové známky</string>
     <string name="channel_new_homework">Nové domáce úlohy</string>
