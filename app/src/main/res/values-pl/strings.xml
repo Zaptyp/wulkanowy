@@ -652,13 +652,13 @@
     <string name="pref_other_grade_modifier_minus">Wartość minusa</string>
     <string name="pref_other_fill_message_content">Odpowiadaj z historią wiadomości</string>
     <string name="pref_other_optional_arithmetic_average">Licz średnią arytmetyczną, gdy żadna ocena nie ma wagi</string>
-    <string name="pref_ads_support_category_name">Support</string>
-    <string name="pref_ads_support">Watch single ad to support project</string>
-    <string name="pref_ads_privacy_title">Consent to data processing</string>
-    <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
-    <string name="pref_ads_privacy_agree">Agree</string>
+    <string name="pref_ads_support_category_name">Wsparcie</string>
+    <string name="pref_ads_support">Obejrzyj pojedynczą reklamę, aby wesprzeć projekt</string>
+    <string name="pref_ads_privacy_title">Zgoda na przetwarzanie danych</string>
+    <string name="pref_ads_privacy_description">Aby obejrzeć reklamę, musisz zaakceptować warunki przetwarzania danych zawarte w naszej Polityce Prywatności</string>
+    <string name="pref_ads_privacy_agree">Akceptuję</string>
     <string name="pref_ads_privacy_link">Polityka prywatności</string>
-    <string name="pref_ads_loading">Ad is loading</string>
+    <string name="pref_ads_loading">Ładowanie reklamy</string>
     <string name="pref_settings_advanced_title">Zaawansowane</string>
     <string name="pref_settings_appearance_title">Wygląd i zachowanie</string>
     <string name="pref_settings_notifications_title">Powiadomienia</string>
@@ -681,7 +681,7 @@
     <string name="pref_advanced_category_summary">Wartości plusa i minusa, obliczanie średniej</string>
     <string name="pref_advanced_category">Zaawansowane</string>
     <string name="pref_about_category_summary">Wersja aplikacji, twórcy, media społecznościowe, licencje</string>
-    <string name="pref_ads_category_summary">Displaying advertisements, project support</string>
+    <string name="pref_ads_category_summary">Wyświetlanie reklam, wsparcie projektu</string>
     <!--Notification Channels-->
     <string name="channel_new_grades">Nowe oceny</string>
     <string name="channel_new_homework">Nowe zadania domowe</string>
