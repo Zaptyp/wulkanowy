@@ -652,10 +652,18 @@
     <string name="pref_other_grade_modifier_minus">Wartość minusa</string>
     <string name="pref_other_fill_message_content">Odpowiadaj z historią wiadomości</string>
     <string name="pref_other_optional_arithmetic_average">Licz średnią arytmetyczną, gdy żadna ocena nie ma wagi</string>
+    <string name="pref_ads_support_category_name">Support</string>
+    <string name="pref_ads_support">Watch single ad to support project</string>
+    <string name="pref_ads_privacy_title">Consent to data processing</string>
+    <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
+    <string name="pref_ads_privacy_agree">Agree</string>
+    <string name="pref_ads_privacy_link">Privacy policy</string>
+    <string name="pref_ads_loading">Ad is loading</string>
     <string name="pref_settings_advanced_title">Zaawansowane</string>
     <string name="pref_settings_appearance_title">Wygląd i zachowanie</string>
     <string name="pref_settings_notifications_title">Powiadomienia</string>
     <string name="pref_settings_sync_title">Synchronizacja</string>
+    <string name="pref_settings_ads_title">Advertisements</string>
     <string name="pref_grades_appearance_header">Oceny</string>
     <string name="pref_dashboard_appearance_header">Start</string>
     <string name="pref_dashboard_appearance_tiles_title">Widoczność kafelków</string>
@@ -673,6 +681,7 @@
     <string name="pref_advanced_category_summary">Wartości plusa i minusa, obliczanie średniej</string>
     <string name="pref_advanced_category">Zaawansowane</string>
     <string name="pref_about_category_summary">Wersja aplikacji, twórcy, media społecznościowe, licencje</string>
+    <string name="pref_ads_category_summary">Displaying advertisements, project support</string>
     <!--Notification Channels-->
     <string name="channel_new_grades">Nowe oceny</string>
     <string name="channel_new_homework">Nowe zadania domowe</string>
