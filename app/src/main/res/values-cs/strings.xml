@@ -61,7 +61,7 @@
     <string name="login_advanced_warning_mobile_api">V tomto režimu nefungují následující: šťastné číslo, statistiky třídy, shrnutí docházky, ospravedlnění nepřítomnosti, dokončené lekce, informace o škole a prohlížení seznamu registrovaných zařízení</string>
     <string name="login_advanced_warning_scraper">Tento režim zobrazuje stejná data, která se zobrazují na webových stránkách deníka</string>
     <string name="login_advanced_warning_hybrid">Kombinace nejlepších vlastností ostatních dvou režimů. Funguje rychleji než scraper a poskytuje funkce, které nejsou k dispozici v režimu Mobile API. Je to v experimentální fázi</string>
-    <string name="login_privacy_policy">Zásady ochrany osobních údajů</string>
+    <string name="login_privacy_policy">Ochrana osobních údajů</string>
     <string name="login_contact_header">Problémy s přihlášením? Napište nám!</string>
     <string name="login_contact_email">Email</string>
     <string name="login_contact_discord">Discord</string>
@@ -457,7 +457,7 @@
     <string name="about_twitter">Twitter stránka</string>
     <string name="about_twitter_summary">Sledujte nás na Twitteru</string>
     <string name="about_facebook_summary">Dejte like naší stránce na Facebooku</string>
-    <string name="about_privacy">Zásady ochrany osobních údajů</string>
+    <string name="about_privacy">Ochrana osobních údajů</string>
     <string name="about_privacy_summary">Pravidla pro shromažďování osobních údajů</string>
     <string name="about_system">Systemová nastavení</string>
     <string name="about_system_summary">Otevřít systémová nastavení</string>
@@ -652,18 +652,18 @@
     <string name="pref_other_grade_modifier_minus">Hodnota mínusu</string>
     <string name="pref_other_fill_message_content">Odpovědět s historií zpráv</string>
     <string name="pref_other_optional_arithmetic_average">Vypočítat aritmetický průměr, pokud žádná známka nemá váhu</string>
-    <string name="pref_ads_support_category_name">Support</string>
-    <string name="pref_ads_support">Watch single ad to support project</string>
-    <string name="pref_ads_privacy_title">Consent to data processing</string>
+    <string name="pref_ads_support_category_name">Podpora</string>
+    <string name="pref_ads_support">Podívejte se na jednu reklamu pro podporu projektu</string>
+    <string name="pref_ads_privacy_title">Souhlas se zpracováním dat</string>
     <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
-    <string name="pref_ads_privacy_agree">Agree</string>
-    <string name="pref_ads_privacy_link">Privacy policy</string>
-    <string name="pref_ads_loading">Ad is loading</string>
+    <string name="pref_ads_privacy_agree">Souhlasím</string>
+    <string name="pref_ads_privacy_link">Ochrana osobních údajů</string>
+    <string name="pref_ads_loading">Reklama se načítá</string>
     <string name="pref_settings_advanced_title">Pokročilé</string>
     <string name="pref_settings_appearance_title">Vzhled a chování</string>
     <string name="pref_settings_notifications_title">Upozornění</string>
     <string name="pref_settings_sync_title">Synchronizace</string>
-    <string name="pref_settings_ads_title">Advertisements</string>
+    <string name="pref_settings_ads_title">Reklamy</string>
     <string name="pref_grades_appearance_header">Známky</string>
     <string name="pref_dashboard_appearance_header">Domů</string>
     <string name="pref_dashboard_appearance_tiles_title">Viditelnost dlaždic</string>
@@ -681,7 +681,7 @@
     <string name="pref_advanced_category_summary">Hodnota plusu a mínusu, výpočet průměru</string>
     <string name="pref_advanced_category">Pokročilé</string>
     <string name="pref_about_category_summary">Verze aplikace, tvůrci, sociální portály, licence</string>
-    <string name="pref_ads_category_summary">Displaying advertisements, project support</string>
+    <string name="pref_ads_category_summary">Zobrazování reklam, podpora projektu</string>
     <!--Notification Channels-->
     <string name="channel_new_grades">Nové známky</string>
     <string name="channel_new_homework">Nové domácí úkoly</string>
