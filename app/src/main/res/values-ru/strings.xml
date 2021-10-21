@@ -652,10 +652,18 @@
     <string name="pref_other_grade_modifier_minus">Стоимость минуса</string>
     <string name="pref_other_fill_message_content">Отвечать с историей сообщений</string>
     <string name="pref_other_optional_arithmetic_average">Показывать среднее арифметическое при отсутствии весов</string>
+    <string name="pref_ads_support_category_name">Support</string>
+    <string name="pref_ads_support">Watch single ad to support project</string>
+    <string name="pref_ads_privacy_title">Consent to data processing</string>
+    <string name="pref_ads_privacy_description">To view an advertisement you must agree to the data processing terms of our Privacy Policy</string>
+    <string name="pref_ads_privacy_agree">Agree</string>
+    <string name="pref_ads_privacy_link">Privacy policy</string>
+    <string name="pref_ads_loading">Ad is loading</string>
     <string name="pref_settings_advanced_title">Расширенные</string>
     <string name="pref_settings_appearance_title">Внешний вид &amp; Поведение</string>
     <string name="pref_settings_notifications_title">Уведомления</string>
     <string name="pref_settings_sync_title">Синхронизация</string>
+    <string name="pref_settings_ads_title">Advertisements</string>
     <string name="pref_grades_appearance_header">Оценки</string>
     <string name="pref_dashboard_appearance_header">Панель</string>
     <string name="pref_dashboard_appearance_tiles_title">Видимость плиток</string>
@@ -673,6 +681,7 @@
     <string name="pref_advanced_category_summary">Значения плюс и минус, средний расчет</string>
     <string name="pref_advanced_category">Расширенные</string>
     <string name="pref_about_category_summary">Версия приложения, участники, социальные порталы, лицензии</string>
+    <string name="pref_ads_category_summary">Displaying advertisements, project support</string>
     <!--Notification Channels-->
     <string name="channel_new_grades">Новые оценки</string>
     <string name="channel_new_homework">Новая домашняя работа</string>
