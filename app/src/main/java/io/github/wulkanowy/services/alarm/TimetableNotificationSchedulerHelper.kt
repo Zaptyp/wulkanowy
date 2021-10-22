@@ -58,7 +58,7 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
     suspend fun cancelScheduled(lessons: List<Timetable>, student: Student) {
         val studentId = student.studentId
 
-        withContext(dispatchersProvider.backgroundThread) {
+        withContext(dispatchersProvider.io) {
             lessons.sortedBy { it.start }.forEachIndexed { index, lesson ->
                 val upcomingTime = getUpcomingLessonTime(index, lessons, lesson)
                 cancelScheduledTo(
@@ -103,7 +103,7 @@ class TimetableNotificationSchedulerHelper @Inject constructor(
             return
         }
 
-        withContext(dispatchersProvider.backgroundThread) {
+        withContext(dispatchersProvider.io) {
             lessons.groupBy { it.date }
                 .map { it.value.sortedBy { lesson -> lesson.start } }
                 .map { it.filter { lesson -> lesson.isStudentPlan } }
