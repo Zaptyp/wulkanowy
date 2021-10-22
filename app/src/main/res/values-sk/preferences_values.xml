@@ -48,7 +48,7 @@
     <string-array name="dashboard_tile_entries">
         <item>Šťastné číslo</item>
         <item>Neprečítané správy</item>
-        <item>Dochádzka</item>
+        <item>Frekvencia</item>
         <item>Lekcie</item>
         <item>Známky</item>
         <item>Domáce úlohy</item>
