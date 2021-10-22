@@ -4,7 +4,7 @@
     <string name="login_title">Prihlásenie</string>
     <string name="main_title">Wulkanowy</string>
     <string name="grade_title">Známky</string>
-    <string name="attendance_title">Dochádzka</string>
+    <string name="attendance_title">Frekvencia</string>
     <string name="exam_title">Skúšky</string>
     <string name="timetable_title">Plán lekcie</string>
     <string name="settings_title">Nastavenia</string>
@@ -58,7 +58,7 @@
     <string name="login_symbol_helper">Symbol nájdete na stránke denníka v &#160;<b>Uczeń</b>→&#160;<b>Dostęp Mobilny</b> →&#160;<b>Zarejestruj urządzenie mobilne</b>.\n\nUistite sa, že ste na predchádzajúcu obrazovke nastaviť správny variant denníka do poľa <b>Variácie denníka UONET+</b>. Wulkanowy v túto chvíľu nezistí predškolské żaków</string>
     <string name="login_select_student">Vyberte žiakov, ktorí sa majú do aplikácie prihlásiť</string>
     <string name="login_advanced">Iné možnosti</string>
-    <string name="login_advanced_warning_mobile_api">V tomto režime nefungujú nasledovné: šťastné číslo, štatistiky triedy, zhrnutie dochádzky, ospravedlnenie neprítomnosti, dokončené lekcie, informácie o škole a prezeranie zoznamu registrovaných zariadení</string>
+    <string name="login_advanced_warning_mobile_api">V tomto režime nefungujú nasledovné: šťastné číslo, štatistiky triedy, zhrnutie frekvencií, ospravedlnenie neprítomnosti, dokončené lekcie, informácie o škole a prezeranie zoznamu registrovaných zariadení</string>
     <string name="login_advanced_warning_scraper">Tento režim zobrazuje rovnaké dáta, ktoré sa zobrazujú na webových stránkach denníka</string>
     <string name="login_advanced_warning_hybrid">Kombinácia najlepších vlastností ostatných dvoch režimov. Funguje rýchlejšie ako scraper a poskytuje funkcie, ktoré nie sú k dispozícii v režime Mobilne API. Je to v experimentálnej fáze</string>
     <string name="login_privacy_policy">Ochrana osobných údajov</string>
@@ -177,7 +177,7 @@
     <string name="additional_lessons_button">Zobraziť ďalšie lekcie</string>
     <string name="additional_lessons_no_items">Žiadne informácie o ďalších lekciách</string>
     <!--Attendance-->
-    <string name="attendance_summary_button">Zhrnutie dochádzky</string>
+    <string name="attendance_summary_button">Zhrnutie frekvencií</string>
     <string name="attendance_absence_school">Neprítomnosť zo školských dôvodov</string>
     <string name="attendance_absence_excused">Ospravedlnená neprítomnosť</string>
     <string name="attendance_absence_unexcused">Neospravedlnená neprítomnosť</string>
@@ -667,7 +667,7 @@
     <string name="pref_grades_appearance_header">Známky</string>
     <string name="pref_dashboard_appearance_header">Domov</string>
     <string name="pref_dashboard_appearance_tiles_title">Viditeľnosť dlaždíc</string>
-    <string name="pref_attendance_appearance_view">Dochádzka</string>
+    <string name="pref_attendance_appearance_view">Frekvencia</string>
     <string name="pref_timetable_appearance_view">Plán lekcie</string>
     <string name="pref_grades_advanced_header">Známky</string>
     <string name="pref_counted_average_advanced_header">Vypočítaný priemer</string>
