@@ -40,6 +40,11 @@
         <item>Wulkanowy</item>
         <item>Barvy známek v deníku</item>
     </string-array>
+    <string-array name="default_expand_grade_entries">
+        <item>Up to 1 at once</item>
+        <item>Always expanded</item>
+        <item>Unlimited expansions</item>
+    </string-array>
     <string-array name="grade_average_mode_entries">
         <item>Průměr známek pouze z vybraného semestru</item>
         <item>Průměr z průměrů z obou semestrů</item>
