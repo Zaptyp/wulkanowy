@@ -9,7 +9,6 @@ import io.github.wulkanowy.data.pojos.MultipleNotificationsData
 import io.github.wulkanowy.ui.modules.main.MainView
 import io.github.wulkanowy.utils.descriptionRes
 import io.github.wulkanowy.utils.toFormattedString
-import java.time.LocalDate
 import javax.inject.Inject
 
 class NewAttendanceNotification @Inject constructor(
@@ -18,8 +17,7 @@ class NewAttendanceNotification @Inject constructor(
 ) {
 
     suspend fun notify(items: List<Attendance>, student: Student) {
-        val today = LocalDate.now()
-        val lines = items.filterNot { it.date.isBefore(today) || it.presence }
+        val lines = items.filterNot { it.presence || it.name == "UNKNOWN" }
             .map {
                 val description = context.getString(it.descriptionRes)
                 "${it.date.toFormattedString("dd.MM")} - ${it.subject}: $description"

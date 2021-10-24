@@ -23,13 +23,13 @@ class TimetableWork @Inject constructor(
             student = student,
             semester = semester,
             start = now().monday,
-            end = now().sunday,
+            end = now().plusDays(7),
             forceRefresh = true,
             notify = preferencesRepository.isNotificationsEnable
         )
             .waitForResult()
 
-        timetableRepository.getTimetableFromDatabase(semester, now().monday, now().sunday)
+        timetableRepository.getTimetableFromDatabase(semester, now(), now().sunday)
             .first()
             .filterNot { it.isNotified }
             .let {

@@ -22,14 +22,14 @@ class AttendanceWork @Inject constructor(
         attendanceRepository.getAttendance(
             student = student,
             semester = semester,
-            start = now().monday,
+            start = now().minusDays(7),
             end = now().sunday,
             forceRefresh = true,
             notify = preferencesRepository.isNotificationsEnable
         )
             .waitForResult()
 
-        attendanceRepository.getAttendanceFromDatabase(semester, now().monday, now().sunday)
+        attendanceRepository.getAttendanceFromDatabase(semester, now().monday, now())
             .first()
             .filterNot { it.isNotified }
             .let {
