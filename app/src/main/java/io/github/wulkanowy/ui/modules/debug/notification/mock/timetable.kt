@@ -33,6 +33,6 @@ private fun generateTimetable(subject: String, room: String, roomOld: String) = 
     teacherOld = "",
     info = "",
     isStudentPlan = true,
-    changes = false,
-    canceled = false
+    changes = true,
+    canceled = true
 )
