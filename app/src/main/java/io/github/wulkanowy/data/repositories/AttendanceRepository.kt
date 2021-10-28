@@ -70,10 +70,10 @@ class AttendanceRepository @Inject constructor(
 
     fun getAttendanceFromDatabase(
         semester: Semester,
-        from: LocalDate,
+        start: LocalDate,
         end: LocalDate
     ): Flow<List<Attendance>> {
-        return attendanceDb.loadAll(semester.diaryId, semester.studentId, from, end)
+        return attendanceDb.loadAll(semester.diaryId, semester.studentId, start, end)
     }
 
     suspend fun updateTimetable(timetable: List<Attendance>) {

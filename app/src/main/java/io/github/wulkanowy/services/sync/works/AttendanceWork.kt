@@ -5,8 +5,7 @@ import io.github.wulkanowy.data.db.entities.Student
 import io.github.wulkanowy.data.repositories.AttendanceRepository
 import io.github.wulkanowy.data.repositories.PreferencesRepository
 import io.github.wulkanowy.services.sync.notifications.NewAttendanceNotification
-import io.github.wulkanowy.utils.monday
-import io.github.wulkanowy.utils.sunday
+import io.github.wulkanowy.utils.previousOrSameSchoolDay
 import io.github.wulkanowy.utils.waitForResult
 import kotlinx.coroutines.flow.first
 import java.time.LocalDate.now
@@ -22,14 +21,14 @@ class AttendanceWork @Inject constructor(
         attendanceRepository.getAttendance(
             student = student,
             semester = semester,
-            start = now().minusDays(7),
-            end = now().sunday,
+            start = now().previousOrSameSchoolDay,
+            end = now().previousOrSameSchoolDay,
             forceRefresh = true,
             notify = preferencesRepository.isNotificationsEnable
         )
             .waitForResult()
 
-        attendanceRepository.getAttendanceFromDatabase(semester, now().monday, now())
+        attendanceRepository.getAttendanceFromDatabase(semester, now().minusDays(7), now())
             .first()
             .filterNot { it.isNotified }
             .let {

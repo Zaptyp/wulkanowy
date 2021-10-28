@@ -5,8 +5,7 @@ import io.github.wulkanowy.data.db.entities.Student
 import io.github.wulkanowy.data.repositories.PreferencesRepository
 import io.github.wulkanowy.data.repositories.TimetableRepository
 import io.github.wulkanowy.services.sync.notifications.ChangeTimetableNotification
-import io.github.wulkanowy.utils.monday
-import io.github.wulkanowy.utils.sunday
+import io.github.wulkanowy.utils.nextOrSameSchoolDay
 import io.github.wulkanowy.utils.waitForResult
 import kotlinx.coroutines.flow.first
 import java.time.LocalDate.now
@@ -22,14 +21,14 @@ class TimetableWork @Inject constructor(
         timetableRepository.getTimetable(
             student = student,
             semester = semester,
-            start = now().monday,
-            end = now().plusDays(7),
+            start = now().nextOrSameSchoolDay,
+            end = now().nextOrSameSchoolDay,
             forceRefresh = true,
             notify = preferencesRepository.isNotificationsEnable
         )
             .waitForResult()
 
-        timetableRepository.getTimetableFromDatabase(semester, now(), now().sunday)
+        timetableRepository.getTimetableFromDatabase(semester, now(), now().plusDays(7))
             .first()
             .filterNot { it.isNotified }
             .let {
