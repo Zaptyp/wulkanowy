@@ -1,13 +1,16 @@
 package io.github.wulkanowy.services.sync.notifications
 
 import android.content.Context
+import android.content.Intent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.wulkanowy.R
 import io.github.wulkanowy.data.db.entities.Student
 import io.github.wulkanowy.data.db.entities.Timetable
-import io.github.wulkanowy.data.pojos.MultipleNotificationsData
-import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.data.pojos.GroupNotificationData
+import io.github.wulkanowy.data.pojos.NotificationData
+import io.github.wulkanowy.utils.getPlural
 import io.github.wulkanowy.utils.toFormattedString
+import java.time.LocalDate
 import javax.inject.Inject
 
 class ChangeTimetableNotification @Inject constructor(
@@ -16,11 +19,55 @@ class ChangeTimetableNotification @Inject constructor(
 ) {
 
     suspend fun notify(items: List<Timetable>, student: Student) {
-        val lines = items.filter { it.canceled || it.changes }
-            .map {
+        val changedLessons = items.filter { it.canceled || it.changes }
+        val lines = changedLessons.groupBy { it.date }
+            .map { (date, lessons) -> getNotificationContent(date, lessons) }
+            .flatten()
+            .ifEmpty { return }
+
+        val notificationDataList = lines.map {
+            NotificationData(
+                title = context.getPlural(R.plurals.timetable_notify_new_items_title, 1),
+                content = it,
+                intentToStart = Intent()
+            )
+        }
+
+        val groupNotificationData = GroupNotificationData(
+            notificationDataList = notificationDataList,
+            title = context.getPlural(
+                R.plurals.timetable_notify_new_items_title,
+                changedLessons.size
+            ),
+            content = context.getPlural(
+                R.plurals.timetable_notify_new_items_group,
+                changedLessons.size,
+                changedLessons.size
+            ),
+            intentToStart = Intent(),
+            type = NotificationType.CHANGE_TIMETABLE
+        )
+
+        appNotificationManager.sendMultipleNotifications(groupNotificationData, student)
+    }
+
+    private fun getNotificationContent(date: LocalDate, lessons: List<Timetable>): List<String> {
+        val formattedDate = date.toFormattedString("EEE dd.MM")
+
+        return if (lessons.size > 2) {
+            listOf(
+                context.getPlural(
+                    R.plurals.timetable_notify_new_items,
+                    lessons.size,
+                    formattedDate,
+                    lessons.size,
+                )
+            )
+        } else {
+            lessons.map {
                 var text = context.getString(
                     R.string.timetable_notify_lesson,
-                    it.date.toFormattedString("EEE dd.MM"),
+                    formattedDate,
                     it.number,
                     it.subject
                 )
@@ -49,18 +96,7 @@ class ChangeTimetableNotification @Inject constructor(
 
                 text += if (it.info.isNotBlank()) "\n${it.info}" else ""
                 text
-            }.ifEmpty { return }
-
-        val notification = MultipleNotificationsData(
-            type = NotificationType.CHANGE_TIMETABLE,
-            icon = R.drawable.ic_main_timetable,
-            titleStringRes = R.plurals.timetable_notify_new_items_title,
-            contentStringRes = R.plurals.timetable_notify_new_items,
-            summaryStringRes = R.plurals.timetable_number_item,
-            startMenu = MainView.Section.TIMETABLE,
-            lines = lines
-        )
-
-        appNotificationManager.sendNotification(notification, student)
+            }
+        }
     }
 }

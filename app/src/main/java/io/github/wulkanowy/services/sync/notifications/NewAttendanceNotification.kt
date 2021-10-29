@@ -1,13 +1,15 @@
 package io.github.wulkanowy.services.sync.notifications
 
 import android.content.Context
+import android.content.Intent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.wulkanowy.R
 import io.github.wulkanowy.data.db.entities.Attendance
 import io.github.wulkanowy.data.db.entities.Student
-import io.github.wulkanowy.data.pojos.MultipleNotificationsData
-import io.github.wulkanowy.ui.modules.main.MainView
+import io.github.wulkanowy.data.pojos.GroupNotificationData
+import io.github.wulkanowy.data.pojos.NotificationData
 import io.github.wulkanowy.utils.descriptionRes
+import io.github.wulkanowy.utils.getPlural
 import io.github.wulkanowy.utils.toFormattedString
 import javax.inject.Inject
 
@@ -24,16 +26,26 @@ class NewAttendanceNotification @Inject constructor(
             }
             .ifEmpty { return }
 
-        val notification = MultipleNotificationsData(
-            type = NotificationType.NEW_ATTENDANCE,
-            icon = R.drawable.ic_main_attendance,
-            titleStringRes = R.plurals.attendance_notify_new_items_title,
-            contentStringRes = R.plurals.attendance_notify_new_items,
-            summaryStringRes = R.plurals.attendance_number_item,
-            startMenu = MainView.Section.ATTENDANCE,
-            lines = lines
+        val notificationDataList = lines.map {
+            NotificationData(
+                title = context.getPlural(R.plurals.attendance_notify_new_items_title, 1),
+                content = it,
+                intentToStart = Intent()
+            )
+        }
+
+        val groupNotificationData = GroupNotificationData(
+            notificationDataList = notificationDataList,
+            title = context.getPlural(R.plurals.attendance_notify_new_items_title, lines.size),
+            content = context.getPlural(
+                R.plurals.attendance_notify_new_items,
+                lines.size,
+                lines.size
+            ),
+            intentToStart = Intent(),
+            type = NotificationType.NEW_ATTENDANCE
         )
 
-        appNotificationManager.sendNotification(notification, student)
+        appNotificationManager.sendMultipleNotifications(groupNotificationData, student)
     }
 }

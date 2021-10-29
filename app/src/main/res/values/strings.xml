@@ -172,6 +172,10 @@
         <item quantity="other">Timetable changes</item>
     </plurals>
     <plurals name="timetable_notify_new_items">
+        <item quantity="one">%1$s - %2$d change in timetable</item>
+        <item quantity="other">%1$s - %2$d  changes in timetable</item>
+    </plurals>
+    <plurals name="timetable_notify_new_items_group">
         <item quantity="one">%1$d change in timetable</item>
         <item quantity="other">%1$d changes in timetable</item>
     </plurals>
