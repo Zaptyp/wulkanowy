@@ -29,7 +29,10 @@ android {
 
         resValue "string", "app_name", "Wulkanowy"
 
-        manifestPlaceholders = [firebase_enabled: project.hasProperty("enableFirebase")]
+        manifestPlaceholders = [
+                firebase_enabled: project.hasProperty("enableFirebase"),
+                admob_project_id: ""
+        ]
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [
@@ -38,6 +41,8 @@ android {
                 ]
             }
         }
+
+        buildConfigField "String", "SINGLE_SUPPORT_AD_ID", "null"
 
         if (System.env.SET_BUILD_TIMESTAMP) {
             buildConfigField "long", "BUILD_TIMESTAMP", String.valueOf(System.currentTimeMillis())
@@ -66,12 +71,14 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            buildConfigField "String", "MESSAGES_BASE_URL", "\"https://messages.wulkanowy.net.pl\""
         }
         debug {
-            resValue "string", "app_name", "Wulkanowy DEV " + defaultConfig.versionCode
+            resValue "string", "app_name", "Wulkanowy DEV"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
             ext.enableCrashlytics = project.hasProperty("enableFirebase")
+            buildConfigField "String", "MESSAGES_BASE_URL", "\"https://messages.wulkanowy.net.pl\""
         }
     }
 
@@ -80,23 +87,21 @@ android {
     productFlavors {
         hms {
             dimension "platform"
-            manifestPlaceholders = [
-                    install_channel: "AppGallery"
-            ]
+            manifestPlaceholders = [install_channel: "AppGallery"]
         }
 
         play {
             dimension "platform"
             manifestPlaceholders = [
-                    install_channel: "Google Play"
+                    install_channel : "Google Play",
+                    admob_project_id: System.getenv("ADMOB_PROJECT_ID") ?: "ca-app-pub-3940256099942544~3347511713"
             ]
+            buildConfigField "String", "SINGLE_SUPPORT_AD_ID", "\"${System.getenv("SINGLE_SUPPORT_AD_ID") ?: "ca-app-pub-3940256099942544/5354046379"}\""
         }
 
         fdroid {
             dimension "platform"
-            manifestPlaceholders = [
-                    install_channel: "F-Droid"
-            ]
+            manifestPlaceholders = [install_channel: "F-Droid"]
         }
     }
 
@@ -170,7 +175,7 @@ ext {
 }
 
 dependencies {
-    implementation "io.github.wulkanowy:sdk:1.3.0"
+    implementation "io.github.wulkanowy:sdk:4efd64264b"
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
@@ -212,6 +217,10 @@ dependencies {
     implementation 'com.github.ncapdevi:FragNav:3.3.0'
     implementation "com.github.YarikSOffice:lingver:1.3.0"
 
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
+
     implementation "com.jakewharton.timber:timber:5.0.1"
     implementation "at.favre.lib:slf4j-timber:1.0.1"
     implementation 'com.github.bastienpaulfr:Treessence:1.0.5'
@@ -227,14 +236,15 @@ dependencies {
     playImplementation 'com.google.firebase:firebase-crashlytics:'
     playImplementation 'com.google.android.play:core:1.10.2'
     playImplementation 'com.google.android.play:core-ktx:1.8.1'
+    playImplementation 'com.google.android.gms:play-services-ads:20.4.0'
 
-    hmsImplementation 'com.huawei.hms:hianalytics:6.3.0.300'
-    hmsImplementation 'com.huawei.agconnect:agconnect-crash:1.6.1.200'
+    hmsImplementation 'com.huawei.hms:hianalytics:6.3.0.301'
+    hmsImplementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
 
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:$chucker"
 
     debugImplementation "com.github.ChuckerTeam.Chucker:library:$chucker"
-    debugImplementation 'com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:v1.0.6'
+    debugImplementation 'com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:1.0.6'
 
     testImplementation "junit:junit:4.13.2"
     testImplementation "io.mockk:mockk:$mockk"
