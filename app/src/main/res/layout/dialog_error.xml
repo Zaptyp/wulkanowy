@@ -29,6 +29,7 @@
         android:id="@+id/errorDialogErrorMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:paddingHorizontal="20dp"
         android:paddingTop="10dp"
         android:textColor="?android:textColorSecondary"
@@ -61,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:textColor="?android:textColorSecondary"
+                    android:textColor="?android:textColorTertiary"
                     android:textIsSelectable="true"
                     android:textSize="12sp"
                     tools:text="@tools:sample/lorem/random" />

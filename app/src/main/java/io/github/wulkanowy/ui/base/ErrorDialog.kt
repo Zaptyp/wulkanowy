@@ -63,22 +63,22 @@ class ErrorDialog : BaseDialogFragment<DialogErrorBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val stringWriter = error.stackTraceToString()
+        val errorStacktrace = error.stackTraceToString()
 
         with(binding) {
-            errorDialogContent.text = stringWriter
+            errorDialogContent.text = errorStacktrace.replace(": ${error.localizedMessage}", "")
             with(errorDialogHorizontalScroll) {
                 post { fullScroll(HorizontalScrollView.FOCUS_LEFT) }
             }
             errorDialogCopy.setOnClickListener {
-                val clip = ClipData.newPlainText("Error details", stringWriter)
+                val clip = ClipData.newPlainText("Error details", errorStacktrace)
                 activity?.getSystemService<ClipboardManager>()?.setPrimaryClip(clip)
 
                 Toast.makeText(context, R.string.all_copied, LENGTH_LONG).show()
             }
             errorDialogCancel.setOnClickListener { dismiss() }
             errorDialogReport.setOnClickListener {
-                openConfirmDialog { openEmailClient(stringWriter) }
+                openConfirmDialog { openEmailClient(errorStacktrace) }
             }
             errorDialogHumanizedMessage.text = resources.getString(error)
             errorDialogErrorMessage.text = error.localizedMessage
