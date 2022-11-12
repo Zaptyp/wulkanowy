@@ -1,0 +1,85 @@
+name: Bug Report
+description: File a bug report
+labels: [bug]
+body:
+- type: dropdown
+  attributes:
+    label: Wersja Androida
+    description: Wybierz wersję androida na której masz zainstalowaną aplikację.
+    multiple: false
+    options:
+    - Android 13 (SDK 33)
+    - Android 12L (SDK 32)
+    - Android 12 (SDK 31)
+    - Android 11 (SDK 30)
+    - Android 10 (SDK 29)
+    - Android 9 (SDK 28)
+    - Android 8.1 (SDK 27)
+    - Android 8.0 (SDK 26)
+    - Android 7.1 (SDK 25)
+    - Android 7.0 (SDK 24)
+    - Android 6 (SDK 23)
+    - Android 5.1 (SDK 22)
+    - Android 5.0 (SDK 21)
+    - Inna wersja Androida (Jeżeli nie wymieniona tutaj)
+- type: textarea
+  attributes:
+    label: Wersja aplikacji Wulkanowy
+    description: Wersja aplikacji Wulkanowy na której wykryto błąd.
+    placeholder: Wulkanowy 1.0.0
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Na jakim urządzeniu została uruchomiona aplikacja?
+    description: Wpisz tutaj markę i model urządzenia.
+    placeholder: Samsung SM-G531F
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: Odmiana dziennika
+    description: Wybierz na jakiej odmianie dziennika występuje błąd. (Jeżeli nie wiesz o co chodzi to zaznacz opcję "Nie wiem" i w poniższym okienku wklej link do strony dziennika na której się logujesz.
+    multiple: true
+    options:
+    - VULCAN
+    - Resman
+    - edu.gdansk.pl
+    - Nie Wiem
+- type: textarea
+  attributes:
+    label: Adres Dziennika (JEŻELI NIE WIESZ JAKĄ MASZ ODMIANĘ DZIENNIKA)
+    description: Tu wpisz adres dziennika na który się normalnie logujesz
+    placeholder: np. https://uonetplus.vulcan.net.pl/warszawa
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Co powinno się dziać?
+    description: Tu opisz co powinno się dziać.
+    placeholder: np. Apikacja wyświetla błąd a nie powinna.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Co powinno się dzieje?
+    description: Tu opisz co się dzieje a nie powinno się dziać.
+    placeholder: np. Apikacja wyświetla błąd o tytule "Wystąpił nieoczekiwany błąd"
+  validations:
+    required: true   
+- type: textarea
+  attributes:
+    label: Jak to zrobić kolejny raz?
+    description: Opisz tutaj dokładnie jakie kroki uczyniłeś aby odtworzyć ten błąd.
+    placeholder: |
+      1.
+      2.
+      3.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Podejrzenie co powoduje błąd.
+    description: Jeżeli wiesz co może powodować że ten błąd się pojawia opisz swoje podejrzenia tutaj.
+  validations:
+    required: false
